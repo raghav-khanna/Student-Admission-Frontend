@@ -6,6 +6,6 @@ This repository contains the Front-End code for the Student-Admission-Module rep
 
 **Please Enter your Names and Roll Nos. in the appropriate places (in the same format as Team Member 1)**
 
-> Team Member 1 - Raghav Khanna [20UCS153]
-> Team Member 2 - (Nirnay)
-> Team Member 3 - (Prateek)
+> Team Member 1 - Raghav Khanna [20UCS153] <br />
+> Team Member 2 - (Nirnay) <br />
+> Team Member 3 - (Prateek) <br />
