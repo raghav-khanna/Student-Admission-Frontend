@@ -9,3 +9,12 @@ This repository contains the Front-End code for the Student-Admission-Module rep
 > Team Member 1 - Raghav Khanna [20UCS153] <br />
 > Team Member 2 - (Nirnay) <br />
 > Team Member 3 - (Prateek) <br />
+
+---
+
+## Instructions for Contributions
+
+1. Inside the src folder, there is a separate folder for every contributor so please make your assigned changes in only those folders.
+1. Finally, after a certain point in development, we will remove these folders
+1. Every folder contains a gimmick text file which ensures that directory gets uploaded to github!
+1. Every folder name is self explanatory, so please read before moving ahead.
