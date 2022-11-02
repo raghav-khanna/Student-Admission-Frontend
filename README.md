@@ -8,7 +8,7 @@ This repository contains the Front-End code for the Student-Admission-Module rep
 
 > Team Member 1 - Raghav Khanna [20UCS153] <br />
 > Team Member 2 - (Nirnay) <br />
-> Team Member 3 - (Prateek) <br />
+> Team Member 3 - Prateek Jain [20UCS145] <br />
 
 ---
 
