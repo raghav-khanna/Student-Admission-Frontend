@@ -24,5 +24,5 @@ This repository contains the Front-End code for the Student-Admission-Module rep
 ## Important Points to be noted
 
 > Making changes in the same file and pushing them will give rise to conflicts! (Huge pain in ...) <Br />
-> So, Files like "Index.js" and "App.js" must not be changed by everyone!! <Br />
+> So, Files like "Index.html" and "App.js" must not be changed by everyone!! Prefer adding them in your .gitignore seperately <Br />
 > Please, (Please x100), do not push changes without announcing it on discord/whatsapp! <Br />
