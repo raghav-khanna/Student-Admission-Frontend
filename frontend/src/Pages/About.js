@@ -4,7 +4,7 @@ import ExpandableCard from "../Components/Nirnay/ExpandableCard";
 function About() {
   return (
     <div>
-      <ExpandableCard />
+      <ExpandableCard/>
     </div>
   );
 }
