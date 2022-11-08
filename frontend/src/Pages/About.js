@@ -1,10 +1,9 @@
 import React from "react";
-import ExpandableCard from "../Components/Nirnay/ExpandableCard";
 
 function About() {
   return (
     <div>
-      <ExpandableCard/>
+      <h1>Welcome to About Page</h1>
     </div>
   );
 }

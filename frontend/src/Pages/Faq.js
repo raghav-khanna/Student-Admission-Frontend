@@ -1,10 +1,9 @@
 import React from "react";
-import DataTabs from "../Components/Nirnay/DataTabs";
 
 function Faq() {
   return (
     <div>
-      <DataTabs />
+      <h1>Welcome to FAQ Page</h1>
     </div>
   );
 }

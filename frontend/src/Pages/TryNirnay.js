@@ -1,9 +1,9 @@
 import React from "react";
-import PhotoGallery from "../Components/Nirnay/PhotoGallery";
+
 const TryNirnay = () => {
   return (
     <div>
-      <PhotoGallery />
+      <h1>Welcome to Try-Nirnay Page</h1>
     </div>
   );
 };
