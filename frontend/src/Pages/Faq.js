@@ -5,6 +5,7 @@ function Faq() {
     <div>
       <h1>Welcome to FAQ Page</h1>
     </div>
+    
   );
 }
 
