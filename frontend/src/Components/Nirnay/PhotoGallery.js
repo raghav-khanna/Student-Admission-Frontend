@@ -1,16 +1,19 @@
 //Carousel Bootstrap
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import i1 from 'frontend\src\Assets\p1.png';
+import i2 from 'frontend\src\Assets\p2.png';
+import i3 from 'frontend\src\Assets\p3.png';
+import './Photo.css';
 const PhotoGallery = () => {
     return (
         <Carousel>
             <Carousel.Item>
                 <img
-                    className="pict"
-                    src="p1.png"
-                    alt="First slide"
+                    className="picture"
+                    src={i1}
+                    alt="FirstSlide"
 
                 />
                 {/* <Carousel.Caption>
@@ -20,8 +23,8 @@ const PhotoGallery = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="pict"
-                    src="p2.png"
+                    className="picture"
+                    src={i2}
                     alt="Second slide"
 
                 />
@@ -33,8 +36,8 @@ const PhotoGallery = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="pict"
-                    src="p3.png"
+                    className="picture"
+                    src={i3}
                     alt="Third slide"
 
                 />
