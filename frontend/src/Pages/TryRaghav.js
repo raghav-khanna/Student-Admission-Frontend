@@ -1,11 +1,17 @@
 import React from "react";
+import ExpandContentButton from "../Components/Nirnay/ExpandContentButton";
+import Sections from "../Components/Nirnay/Sections";
+import SideTable from "../Components/Nirnay/SideTable";
 import DisplayCard from "../Components/Raghav/DisplayCard";
 
 const TryRaghav = () => {
   return (
     <div>
       <h1>Welcome to Try-Raghav Page</h1>
-      <DisplayCard />
+      {/* <DisplayCard /> */}
+      {/* <Sections /> */}
+      {/* <SideTable /> */}
+      <ExpandContentButton />
     </div>
   );
 };
