@@ -1,0 +1,50 @@
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.banner-image {
+  background-image: url("../../Assets/HomePage.jpg");
+  background-size: contain;
+}
+
+.banner-image-container {
+  border: 2px solid rgb(1, 1, 255);
+  height: 100rem;
+}
+
+.cards {
+  display: flex;
+  margin: 0;
+  height: 15rem;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 20rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-end;
+  margin-bottom: 1rem;
+  border: 2px solid red;
+  color: rgb(26, 25, 25);
+}
+
+.card-item {
+  font-size: large;
+  background-color: rgb(59, 53, 53);
+  color: white;
+  height: 25rem;
+  width: 23%;
+  padding: 2rem;
+  margin: 0.5%;
+  border: 2px solid black;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.card-item:hover {
+  z-index: 1;
+  transform: scale(1.15);
+  transition: all 0.3s;
+  cursor: pointer;
+}

@@ -1,9 +1,10 @@
 import React from "react";
+import Banner from "../Components/Prateek/Banner";
 
 function Home() {
   return (
     <div>
-      <h1>This is the HOME Page</h1>
+      <Banner />
     </div>
   );
 }
