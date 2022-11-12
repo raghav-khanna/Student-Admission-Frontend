@@ -5,6 +5,7 @@ const TryNirnay = () => {
   return (
     <div>
       <PhotoGallery />
+      {/* <Sections></Sections> */}
     </div>
   );
 };

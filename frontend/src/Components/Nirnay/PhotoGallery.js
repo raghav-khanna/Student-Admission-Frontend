@@ -2,39 +2,170 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
-import i1 from "../../Assets/p1.png";
-import i2 from "../../Assets/p2.png";
-import i3 from "../../Assets/p3.png";
+import i1 from "../../Assets/360 VIEW OF LNMIIT.jpg";
+import i2 from "../../Assets/BASKETBALL COURT.jpg";
+import i3 from "../../Assets/BOYS HOSTEL 2.jpg";
+import i4 from "../../Assets/BOYS HOSTEL 3.jpg";
+import i5 from "../../Assets/CENTRAL PLAZA.jpg";
+import i6 from "../../Assets/COMPUTER LAB.jpg";
+import i7 from "../../Assets/ENTRANCE.jpg";
+import i8 from "../../Assets/LNMIIT VIEW.jpg";
+import i9 from "../../Assets/NIGHT VIEW OF LNMIIT.jpg";
+import i10 from "../../Assets/SPORTS EVENT.jpg";
+import i11 from "../../Assets/SPORTS FACILITIES.jpg";
+import i12 from "../../Assets/TEDX EVENT AT LNMIIT.jpg";
+import i13 from "../../Assets/VAVACITY.jpg";
+
+
 import "./Photo.css";
 const PhotoGallery = () => {
   return (
     <Carousel>
-      <Carousel.Item>
-        <img className="picture" src={i1} alt="FirstSlide" />
-        {/* <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption> */}
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="picture" src={i2} alt="Second slide" />
 
-        {/* <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption> */}
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i1} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>360 VIEW OF LNMIIT</h1>
+            </div>
+          </div>
+        </div>
       </Carousel.Item>
-      <Carousel.Item>
-        <img className="picture" src={i3} alt="Third slide" />
 
-        {/* <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </Carousel.Caption> */}
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i2} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>BASKETBALL COURT</h1>
+            </div>
+          </div>
+        </div>
       </Carousel.Item>
-    </Carousel>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i3} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>BOYS HOSTEL 2</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i4} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>BOYS HOSTEL 3</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i5} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>CENTRAL PLAZA</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i6} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>COMPUTER LAB</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i7} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>ENTRANCE</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i8} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>LNMIIT VIEW</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i9} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>NIGHT VIEW OF LNMIIT</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i10} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>SPORTS EVENT</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i11} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>SPORTS FACILITIES</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i12} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>TEDX EVENT AT LNMIIT</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+      <Carousel.Item className="carousel-item">
+        <div className="container">
+          <img src={i13} className="pict" alt="1" style={{ backfaceVisibility: "hidden" }} />
+          <div className="hidden">
+            <div className="text">
+              <h1>VAVACITY</h1>
+            </div>
+          </div>
+        </div>
+      </Carousel.Item>
+
+    </Carousel >
   );
 };
 
