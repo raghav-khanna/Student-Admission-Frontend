@@ -3,29 +3,28 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.banner-image {
-  background-image: url("../../Assets/HomePage.jpg");
-  background-size: contain;
+.banner-image-container .banner-image {
+  height: 100%;
+  width: 100%;
 }
 
 .banner-image-container {
-  border: 2px solid rgb(1, 1, 255);
-  height: 100rem;
+  position: absolute;
+  top: 1rem;
+  z-index: -1;
 }
 
 .cards {
+  position: relative;
   display: flex;
   margin: 0;
-  height: 15rem;
   justify-content: center;
   flex-direction: row;
   padding-top: 20rem;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: flex-end;
-  margin-bottom: 1rem;
-  border: 2px solid red;
+  overflow: hidden;
+  margin: 2rem 0;
+  /* margin: 1rem; */
   color: rgb(26, 25, 25);
 }
 
@@ -33,18 +32,25 @@
   font-size: large;
   background-color: rgb(59, 53, 53);
   color: white;
-  height: 25rem;
+  height: 22rem;
   width: 23%;
-  padding: 2rem;
-  margin: 0.5%;
-  border: 2px solid black;
+  /* flex-grow: 1; */
+  padding: 0rem 2rem 2rem 2rem;
+  /* margin: 0.2%; */
+  border-radius: 1rem;
   text-align: center;
   transition: all 0.3s;
+}
+
+.card-item > figure {
+  margin-top: 1rem;
+  font-size: xx-large;
 }
 
 .card-item:hover {
   z-index: 1;
   transform: scale(1.15);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: all 0.3s;
   cursor: pointer;
 }

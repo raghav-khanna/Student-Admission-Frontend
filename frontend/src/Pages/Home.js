@@ -1,10 +1,12 @@
 import React from "react";
-import Banner from "../Components/Prateek/Banner";
+import BannerCards from "../Components/Prateek/BannerCards";
+import InstituteGlance from "../Components/Prateek/InstituteGlance";
 
 function Home() {
   return (
     <div>
-      <Banner />
+      <BannerCards />
+      <InstituteGlance />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import LogoImage from "../../Assets/Logo.png";
 
 const Navbar = () => {
   const [showMediaIcons, setShowMediaIcons] = useState(false);
@@ -16,7 +17,9 @@ const Navbar = () => {
       <nav className="main-nav">
         {/* 1st logo part  */}
         <div className="logo">
-          <h2>LNMIIT</h2>
+          <figure>
+            <img className="logo-image" src={LogoImage} alt="LNMIIT Logo" />
+          </figure>
         </div>
 
         {/* 2nd menu part  */}
