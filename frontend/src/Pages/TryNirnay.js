@@ -1,11 +1,10 @@
 import React from "react";
-import PhotoGallery from "../Components/Nirnay/PhotoGallery";
+import Sections from "../Components/Nirnay/Sections";
 
 const TryNirnay = () => {
   return (
     <div>
-      <PhotoGallery />
-      {/* <Sections></Sections> */}
+      <Sections />
     </div>
   );
 };
