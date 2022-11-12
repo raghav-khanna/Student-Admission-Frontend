@@ -15,7 +15,6 @@ import i10 from "../../Assets/SPORTS EVENT.jpg";
 import i11 from "../../Assets/SPORTS FACILITIES.jpg";
 import i12 from "../../Assets/TEDX EVENT AT LNMIIT.jpg";
 import i13 from "../../Assets/VAVACITY.jpg";
-
 import "./Photo.css";
 const PhotoGallery = () => {
   return (
