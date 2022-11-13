@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import Placements from "./Pages/Placements";
 import TryNirnay from "./Pages/TryNirnay";
 import TryRaghav from "./Pages/TryRaghav";
+import TryPrateek from "./Pages/TryPrateek";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/placements" element={<Placements />} />
         <Route path="/try_nirnay" element={<TryNirnay />} />
         <Route path="/try_raghav" element={<TryRaghav />} />
+        <Route path="/try_prateek" element={<TryPrateek />} />
 
         <Route
           path="*"
