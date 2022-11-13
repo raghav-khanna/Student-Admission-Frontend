@@ -5,20 +5,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const SideTable = () => {
   return (
-    <ListGroup className="listgrp" defaultActiveKey="#link1">
-      <ListGroup.Item className="Buton" action href="#link1">
-        Link 1
-      </ListGroup.Item>
-      <ListGroup.Item className="Buton" action href="#link2">
-        Link 2
-      </ListGroup.Item>
-      <ListGroup.Item className="Buton" action href="#link3">
-        Link 3
-      </ListGroup.Item>
-      <ListGroup.Item className="Buton" action href="#link4">
-        Link 4
-      </ListGroup.Item>
-    </ListGroup>
+    <div className="flex-container">
+      <ListGroup className="listgrp" >
+        <ListGroup.Item className="Buton" action href="#link1">
+          <h2>REGUALAR MODE</h2>
+        </ListGroup.Item>
+        <ListGroup.Item className="Buton" action href="#link2">
+          <h2>DASA MODE</h2>
+        </ListGroup.Item>
+        <ListGroup.Item className="Buton" action href="#link3">
+          <h2>DIRECT MODE</h2>
+        </ListGroup.Item>
+        <ListGroup.Item className="Buton" action href="#link4">
+          <h2>LATERAL ENTRY MODE</h2>
+        </ListGroup.Item>
+      </ListGroup>
+    </div>
 
   );
 };
