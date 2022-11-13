@@ -16,6 +16,7 @@ const TryRaghav = () => {
       {/* <ExpandContentButton /> */}
       {/* <InstituteGlance />
       <PhotoGallery /> */}
+      <Sections />
     </div>
   );
 };
