@@ -29,7 +29,7 @@ const PhotoGallery = () => {
           />
           <div className="hidden">
             <div className="text">
-              <h1>360 VIEW OF LNMIIT</h1>
+              <h1>BIRD-EYE VIEW OF LNMIIT</h1>
             </div>
           </div>
         </div>
@@ -221,7 +221,7 @@ const PhotoGallery = () => {
           />
           <div className="hidden">
             <div className="text">
-              <h1>VAVACITY</h1>
+              <h1>VIVACITY</h1>
             </div>
           </div>
         </div>
