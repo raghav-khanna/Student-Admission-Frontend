@@ -12,7 +12,7 @@ import Button from "react-bootstrap/esm/Button";
 
 const InstituteGlance = () => {
   return (
-    <div className="container">
+    <div className="container-ins">
       <h2 className="institute-title">Institute at a Glance</h2>
       <section className="institute-information-container-parent">
         <div className="institute-information-container-row">
