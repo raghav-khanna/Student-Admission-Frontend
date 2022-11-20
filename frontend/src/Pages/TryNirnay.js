@@ -1,10 +1,10 @@
 import React from "react";
-import AboutUs from "../Components/Dump/AboutUs";
+import Sections from "../Components/Nirnay/Sections";
 
 const TryNirnay = () => {
   return (
     <div>
-      <AboutUs />
+      <Sections />
     </div>
   );
 };
