@@ -82,7 +82,7 @@ p {
   margin-inline-end: 0px;
 }
 
-.mu-footer .mu-footer-top .mu-footer-top-area .mu-footer-widget .line {
+.mu-footer .mu-footer-top .mu-footer-top-area .mu-footer-widget h4::after {
   position: absolute;
   content: "";
   display: block;

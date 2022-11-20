@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap/dist/css/bootstrap.min.css";
 import i1 from "../../Assets/AboutUS.jpg";
-import "./ExpandContentButton.css";
+import "./AboutUs.css";
 
-const ExpandContentButton = () => {
+const AboutUs = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -42,4 +42,4 @@ const ExpandContentButton = () => {
   );
 };
 
-export default ExpandContentButton;
+export default AboutUs;

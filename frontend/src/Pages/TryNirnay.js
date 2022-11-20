@@ -1,12 +1,10 @@
 import React from "react";
-import Footer from "../Components/Nirnay/Footer";
-
+import AboutUs from "../Components/Dump/AboutUs";
 
 const TryNirnay = () => {
   return (
     <div>
-      <br></br>
-      <Footer />
+      <AboutUs />
     </div>
   );
 };
