@@ -1,11 +1,11 @@
 import React from "react";
-
-import InstituteGlance from "../Components/Prateek/InstituteGlance";
+// import UG_Highlight_section from "../Components/Nirnay/UG_Highlight_section";
+import UG_Highlight_section from "../Components/Prateek/UG_Highlight_section";
 
 const TryPrateek = () => {
   return (
     <div>
-      <InstituteGlance />
+      <UG_Highlight_section />
     </div>
   );
 };
