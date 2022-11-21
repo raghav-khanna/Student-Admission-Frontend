@@ -1,5 +1,5 @@
 import React from "react";
-import "./UG_Highlight_section.css";
+import "./UgHighlight.css";
 import {
   FaChartLine,
   FaChartBar

@@ -1,10 +1,11 @@
-.UG_Main_Container{
+.UG_Main_Container {
     align-items: center;
     border: greenyellow;
     padding-left: 25rem;
     margin-top: 5rem;
 }
-.UG_table{
+
+.UG_table {
     /* display:flex;
     justify-content: space-around; */
     border: greenyellow;
@@ -19,26 +20,31 @@
     font-weight: 600;
     padding-left: 10px; */
 }
-.UG_head{
+
+.UG_head {
     width: 2rem;
 }
-.gray-bg{
+
+.gray-bg {
     background-color: rgba(196, 174, 174, 0.489);
     border: #05050590;
     border-style: solid;
 }
-.white-bg{
+
+.white-bg {
     border: #05050590;
     border-style: solid;
-    
+
 }
-.table_head{
+
+.table_head {
     background-color: #d1252d;
-    color:#fff;
+    color: #fff;
     border: #05050590;
     border-style: solid;
 }
-.seats{
+
+.seats {
     border: #05050590;
     border-style: solid;
 }
