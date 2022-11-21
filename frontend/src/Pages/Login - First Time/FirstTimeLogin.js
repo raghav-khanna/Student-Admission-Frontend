@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import "./LoginStyles.css";
 
 const FirstTimeLogin = () => {
-  const [progress, setProgress] = useState(30);
+  const [progress, setProgress] = useState(20);
 
   return (
     <div>
@@ -18,7 +18,7 @@ const FirstTimeLogin = () => {
           variant="danger"
           visuallyHidden
         />
-        <Outlet />
+        <Outlet context={[progress, setProgress]} />
       </div>
     </div>
   );
