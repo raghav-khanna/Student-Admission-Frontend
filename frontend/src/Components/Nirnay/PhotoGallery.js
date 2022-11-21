@@ -18,9 +18,9 @@ import i13 from "../../Assets/VAVACITY.jpg";
 import "./Photo.css";
 const PhotoGallery = () => {
   return (
-    <section className="about-us">
-      <div className="about-us-container">
-        <div className="about-us-title">
+    <section className="photo-gallery">
+      <div className="photo-gallery-container">
+        <div className="photo-gallery-title">
           <h2 className="tagh2">
             Photo Gallery
           </h2>
