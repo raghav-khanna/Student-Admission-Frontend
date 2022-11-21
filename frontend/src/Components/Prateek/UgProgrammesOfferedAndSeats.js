@@ -5,12 +5,12 @@ import "./UgProgrammesOfferedAndSeats.css";
 
 const UgProgrammesOfferedAndSeats = () => {
     return (
-        <div className="UG_Main_Container">
+        <div className="ug-Main-Container">
             <h1>UG Programmes Offered and Available Seats</h1>
-            <table className="UG_table">
+            <table className="ug-table">
 
-                <thead className="UG_head">
-                    <tr className="table_head">
+                <thead className="ug-head">
+                    <tr className="table-head">
                         <th>Programmes</th>
                         <th className="seats">Seats</th>
                     </tr>

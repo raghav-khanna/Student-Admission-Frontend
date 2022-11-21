@@ -1,7 +1,7 @@
 import React from "react";
 // import ExpandContentButton from "../Components/Nirnay/ExpandContentButton";
 import PhotoGallery from "../Components/Nirnay/PhotoGallery";
-import Sections from "../Components/Nirnay/Sections";
+import Programmes from "../Components/Nirnay/Programmes";
 import SideTable from "../Components/Nirnay/SideTable";
 import InstituteGlance from "../Components/Prateek/InstituteGlance";
 import DisplayCard from "../Components/Raghav/DisplayCard";
@@ -16,7 +16,7 @@ const TryRaghav = () => {
       {/* <ExpandContentButton /> */}
       {/* <InstituteGlance />
       <PhotoGallery /> */}
-      <Sections />
+      <Programmes />
     </div>
   );
 };

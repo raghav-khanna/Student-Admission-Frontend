@@ -52,7 +52,7 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.UG_section-tab-child-h2 {
+.ug-programmes-section-tab-child-h2 {
   font-size: 1.6em;
   margin-bottom: 1rem;
   text-align: left;
@@ -63,7 +63,7 @@
   border-bottom-color: rgb(204, 204, 204);
 }
 
-.UG_section-tab-child-h3 {
+.ug-programmes-section-tab-child-h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-family: "Montserrat", sans-serif;
@@ -77,8 +77,10 @@
   margin-inline-end: 0px;
 }
 
-.list-elements {
+.ug-programmes-list-elements {
   line-height: 2rem;
   list-style: circle;
   padding-bottom: 0.6rem;
+  text-align: justify;
+  width: auto;
 }
