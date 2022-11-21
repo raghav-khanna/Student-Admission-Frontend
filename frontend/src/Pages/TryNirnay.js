@@ -1,11 +1,10 @@
 import React from "react";
-import ExpandContentButton from "../Components/Nirnay/ExpandContentButton";
-
+import Sections from "../Components/Nirnay/Sections";
 
 const TryNirnay = () => {
   return (
     <div>
-      <ExpandContentButton />
+      <Sections />
     </div>
   );
 };

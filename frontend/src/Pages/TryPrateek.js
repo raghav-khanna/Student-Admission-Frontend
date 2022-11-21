@@ -1,11 +1,11 @@
 import React from "react";
-import Footer from "../Components/Prateek/Footer";
+
+import InstituteGlance from "../Components/Prateek/InstituteGlance";
 
 const TryPrateek = () => {
   return (
     <div>
-      <h1>This is Try Prateek</h1>
-      <Footer />
+      <InstituteGlance />
     </div>
   );
 };
