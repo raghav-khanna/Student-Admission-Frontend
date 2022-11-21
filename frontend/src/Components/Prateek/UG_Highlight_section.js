@@ -61,46 +61,7 @@ Acro Packaging, The Elite Express, Mytokri.com, OC2, EventGraphia, Playlyfe, Dre
             
           </div>
         </div>
-        {/* <div className="institute-information-container-row">
-          <div className="institute-information-card">
-            <figure>
-              <FaMicrophone />
-            </figure>
-            <strong className="title">Infrastructure</strong>
-            <br />
-            <br />
-            The LNMIIT, spread over 100-acre green campus, is at par with the
-            best technological institutions in the country.
-            <br />
-            
-          </div>
-          <div className="institute-information-card">
-            <figure>
-              <FaFilm />
-            </figure>
-            <strong className="title">
-              Institute Accreditation and Ranking
-            </strong>
-            <br />
-            <br />
-            The LNMIIT is a deemed-to be university under UGC and Accredited 'A'
-            grade by NAAC. (Second-cycle of re-accreditation is in process)
-            <br />
-            
-          </div>
-          <div className="institute-information-card">
-            <figure>
-              <FaSun />
-            </figure>
-            <strong className="title">Life at LNMIIT</strong>
-            <br />
-            <br />
-            Students actively participate in institute's activity through
-            Gymkhana, councils and clubs.
-            <br />
-            
-          </div>
-        </div> */}
+
       </section>
     </div>
   );
