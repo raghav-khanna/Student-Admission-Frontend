@@ -1,10 +1,10 @@
-.about-us {
+.home-about-us {
     padding-top: 8rem;
     padding-bottom: 8rem;
     background-color: #f2f2f2;
 }
 
-.about-us-container {
+.home-about-us-container {
     padding-left: 1.5em;
     padding-right: 1.5em;
     margin-left: auto;
@@ -12,20 +12,20 @@
     max-width: 90%;
 }
 
-.about-us-title {
+.home-about-us-title {
     position: relative;
     text-align: center;
     margin-bottom: 3em;
 
 }
 
-.tagh2 {
+.home-about-us-h2 {
     font-size: 3em;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
 }
 
-.tagh2::after {
+.home-about-us-h2::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -35,25 +35,24 @@
     width: 100px;
 }
 
-
-.box {
+.home-about-us-box {
     display: flex;
     flex-direction: row;
 }
 
-.left {
+.home-about-us-box-left {
     padding-left: 1em;
     padding-right: 1em;
     font-size: 16px;
     text-align: justify;
 }
 
-.right {
+.home-about-us-box-right {
     padding-left: 1.1em;
     padding-right: 1.1em;
 }
 
-.pict {
+.home-about-us-box-pict {
     vertical-align: middle;
     object-fit: cover;
     width: 55rem;

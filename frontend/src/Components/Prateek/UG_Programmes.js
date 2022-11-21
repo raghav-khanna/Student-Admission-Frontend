@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./UG_section.css";
+import "./UG_Programmes.css";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
-const UG_section = () => {
-  const [key, setKey] = useState("home");
+const UG_Programmes = () => {
+  const [key, setKey] = useState("UG");
 
   return (
-    <section className="programmes">
-      <div className="programmes-container">
-        <div className="programmes-title">
-          <h2 className="tagh2">
+    <section className="ug-programmes">
+      <div className="ug-programmes-container">
+        <div className="ug-programmes-title">
+          <h2 className="ug-programmes-title-h2">
             PROGRAMMES
           </h2>
         </div>
@@ -27,11 +27,6 @@ const UG_section = () => {
             className="UG_section-child"
             variant="danger"
           >
-            {/* <div className="UG_section-tab-child-header">
-              <h2 className="UG_section-tab-child-h2">
-                UG Programmes
-              </h2>
-            </div> */}
             <div className="UG_section-tab-child-sub-header">
               <h3 className="UG_section-tab-child-h3">
                 B. Tech. (Honours) with Specialization
@@ -98,34 +93,18 @@ const UG_section = () => {
               </ul>
               <hr />
             </div>
-            {/* <div className="UG_section-tab-child-sub-header">
-              <h3 className="UG_section-tab-child-h3">
-                B.Tech. - M.Tech. (5 Year Integrated Dual Degree)
-              </h3>
-            </div>
-            <div className="UG_section-tab-child-list">
-              <ul>
-                <li className="list-elements">
-                  Computer Science and Engineering (CSE)
-                </li>
-                <li className="list-elements">
-                  Electronics and Communication Engineering (ECE)
-                </li>
-              </ul>
-              <hr />
-            </div> */}
           </Tab>
 
           <Tab
-            eventKey="PG"
+            eventKey="B.Tech-M.Tech (5-Year Integrated Dual Degree)"
             title="B.Tech-M.Tech (5-Year Integrated Dual Degree)"
             className="UG_section-tab-child"
             variant="danger"
           >
-            
+
             <div className="UG_section-tab-child-sub-header">
               <h3 className="UG_section-tab-child-h3">
-              B.Tech-M.Tech (5-Year Integrated Dual Degree)
+                B.Tech-M.Tech (5-Year Integrated Dual Degree)
               </h3>
             </div>
             <div className="UG_section-tab-child-list">
@@ -145,4 +124,4 @@ const UG_section = () => {
   );
 };
 
-export default UG_section;
+export default UG_Programmes;

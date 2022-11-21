@@ -26,7 +26,6 @@ const Sections = () => {
             title="UG Programmes"
             className="sections-child"
             variant="danger"
-            e
           >
             <div className="sections-tab-child-header">
               <h2 className="sections-tab-child-h2">

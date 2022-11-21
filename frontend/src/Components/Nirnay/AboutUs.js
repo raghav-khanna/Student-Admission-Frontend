@@ -8,16 +8,16 @@ import "./AboutUs.css";
 const AboutUs = () => {
     const [open, setOpen] = useState(false);
     return (
-        <section className="about-us">
-            <div className="about-us-container">
-                <div className="about-us-title">
-                    <h2 className="tagh2">
+        <section className="home-about-us">
+            <div className="home-about-us-container">
+                <div className="home-about-us-title">
+                    <h2 className="home-about-us-h2">
                         ABOUT US
                     </h2>
                 </div>
-                <div className="box">
+                <div className="home-about-us-box">
                     <div className="col-lg-6 col-md-6">
-                        <div className="left">
+                        <div className="home-about-us-box-left">
                             <Collapse in="true">
                                 <div id="visible-text" className="para">
                                     <p>The LNMIIT was founded in 2002 as a joint venture between Govt. of Rajasthan and Lakshmi & Usha Mittal (LUM) Foundation as a philanthropic initiative. With the emphasis on quality and rigour in education, the Institute began its first academic session in July 2003 and was granted Deemed-to-be-University status by UGC in 2006 under the De-Novo category. The Institute, in spite of being young, is considered as one of the best institutions in its chosen areas of higher learning, both in the state and the country. In addition to having been accredited by the National Assessment & Accreditation Council (NAAC) as an 'A' grade institution, all the engineering programmes of the institute are approved by the AICTE.</p>
@@ -40,8 +40,8 @@ const AboutUs = () => {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
-                        <div className="right">
-                            <img src={i1} className="pict" alt="Photo" />
+                        <div className="home-about-us-box-right">
+                            <img src={i1} className="home-about-us-box-pict" alt="Photo" />
                         </div>
                     </div>
                 </div>
