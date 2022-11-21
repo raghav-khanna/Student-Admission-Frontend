@@ -5,7 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
 const Sections = () => {
-  const [key, setKey] = useState("home");
+  const [key, setKey] = useState("UG");
 
   return (
     <section className="programmes">
@@ -26,6 +26,7 @@ const Sections = () => {
             title="UG Programmes"
             className="sections-child"
             variant="danger"
+            e
           >
             <div className="sections-tab-child-header">
               <h2 className="sections-tab-child-h2">
