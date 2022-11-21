@@ -4,7 +4,7 @@ import "./UG_Programmes.css";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
-const UG_Programmes = () => {
+const UgProgrammes = () => {
   const [key, setKey] = useState("UG");
 
   return (
@@ -124,4 +124,4 @@ const UG_Programmes = () => {
   );
 };
 
-export default UG_Programmes;
+export default UgProgrammes;

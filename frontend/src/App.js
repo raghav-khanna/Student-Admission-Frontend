@@ -14,7 +14,7 @@ import DocumentSubmission from "./Pages/Login - First Time/DocumentSubmission";
 import ChoosePreferences from "./Pages/Login - First Time/ChoosePreferences";
 import ApplicantHome from "./Pages/Login - First Time/ApplicantHome";
 import Successful from "./Pages/Login - First Time/Successful";
-import UG_Admissions from "./Pages/UG_Admissions";
+import UgAdmissions from "./Pages/UgAdmissions";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route path="/try_nirnay" element={<TryNirnay />} />
           <Route path="/try_raghav" element={<TryRaghav />} />
           <Route path="/try_prateek" element={<TryPrateek />} />
-          <Route path="/ug" element={<UG_Admissions />} />
+          <Route path="/ug" element={<UgAdmissions />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
