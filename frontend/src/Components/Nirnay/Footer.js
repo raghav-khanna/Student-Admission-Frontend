@@ -19,7 +19,7 @@ const Footer = () => {
                     <p>From Mumbai, Chennai and Kolkata: Well connected by rail and air</p>
                     <p>Approximate distance to LNMIIT from:
                       Railway Station is 17.5 km, Airport is 23.2 km &amp; Bus Stand is 16.4 km</p>
-                    <a className="image" href="https://www.google.com/maps?ll=26.936346,75.923523&amp;z=16&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=6536242364884995115" target="_blank" >View Google Map</a>
+                    <a className="image-footer" href="https://www.google.com/maps?ll=26.936346,75.923523&amp;z=16&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=6536242364884995115" target="_blank" >View Google Map</a>
                   </address>
                 </div>
               </div>

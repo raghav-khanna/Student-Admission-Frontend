@@ -70,6 +70,14 @@
 .container-ins {
   background-color: #f2f2f2;
   margin-top: 5rem;
+<<<<<<< HEAD
   height: fit-content;
 
+=======
+  height:fit-content;
+  
+}  
+.readmore{
+  margin-top: 5rem;
+>>>>>>> 64ce425528086a6e15321c1d4b245e30bb37b98c
 }

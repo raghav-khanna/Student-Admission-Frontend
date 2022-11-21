@@ -40,12 +40,12 @@
   transition: all 0.5s ease;
 }
 
-.carousel-control-prev {
-  background-color: rgb(255, 255, 255);
+.carousel-control-prev:hover {
+  background-color: rgb(254, 254, 254);
 }
 
-.carousel-control-next {
-  /* background-color: rgb(255, 255, 255); */
+.carousel-control-next:hover {
+  background-color: rgb(254, 254, 254);
 }
 
 .carousel-container {

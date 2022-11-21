@@ -1,4 +1,4 @@
-.main-container{
+.main-container-footer{
   display:flex;
   flex-direction:row;
   height: 60rem;
@@ -6,7 +6,7 @@
   padding-top: 1rem;
   width:250rem;
 }
-.sub-container{
+.sub-container-footer{
   display: flex;
   flex-direction: row;
   padding: 5rem;
@@ -14,19 +14,19 @@
   width:300rem;
   
 }
-.email{
+.email-footer{
   font-size: 23px;
   text-decoration-line: underline;
   text-decoration-color: rgb(249, 8, 32);
   line-height: 0.2rem;
 }
-.contact_reach{
+.contact_reach-footer{
   font-size: 30px;
   text-decoration-line: underline;
   text-decoration-color: rgb(249, 8, 32);
   line-height: 0.2rem;
 }
-.contact_us{
+.contact_us-footer{
   line-height: 0.1rem;
   padding-bottom: 15px;
   text-decoration-line: underline;
@@ -35,7 +35,7 @@
   padding-bottom: 15px;
   
 }
-.reach_us{
+.reach_us-footer{
   font-size: 30px;
   text-decoration-line: underline;
   text-decoration-color: rgb(249, 8, 32);
@@ -43,50 +43,20 @@
   padding-bottom: 15px;
   
 }
-.left-para{
+.left-para-footer{
   
   margin-left: 13rem;
   font-size: 16px;
   color: #fff;
   line-height: 1.5rem;
 }
-.right-para{
+.right-para-footer{
   margin-left: 10rem;
   font-size: 16px;
   color: #fff;
   line-height: 1.5rem;
 }
-.image{
+.image-footer{
   color: #e11c25; 
   font-weight: 600;
 }
-/* .flex-container {
-  background-color: rgb(55, 54, 54);
-  display: flex;
-  align-items: stretch;
-  align-content: center;
-  margin-top: 6rem;
-}
-
-.firstpara {
-  color: white;
-  line-height: 1.6;
-  font-size: large;
-  height: 35rem;
-  padding-left: 5rem;
-  padding-top: 5rem;
-  margin-bottom: 5rem;
-  font-size: larger;
-  flex-grow: 1;
-  height: 100%;
-}
-.secondpara {
-  color: white;
-  line-height: 1.6;
-  font-size: large;
-  height: 35rem;
-  padding-left: 2.09rem;
-  padding-top: 5rem;
-  flex-grow: 1;
-  height: 100%;
-} */

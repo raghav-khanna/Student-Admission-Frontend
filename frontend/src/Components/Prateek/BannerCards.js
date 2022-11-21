@@ -9,7 +9,7 @@ const BannerCards = () => {
       <div className="banner-image-container">
         <figure>
           <img className="banner-image" src={bannerImage} alt="Banner Image" />
-        </figure>
+        </figure> 
       </div>
       <div className="cards">
         <div className="card-item">
