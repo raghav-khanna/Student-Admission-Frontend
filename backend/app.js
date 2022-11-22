@@ -8,18 +8,16 @@ import {retrieveData} from './data.js'
 import {PostAllotment} from './PostAllotment.js'
 import {pool} from './database.js'
 
-const PORT = 3001;
+const PORT = process.env.PORT | 3001;
 let applicants = []
 let branches = []
 let total_rounds = 2
 
 const app = express();
 
-
-//problem here
-app.use(express.static(path.resolve(__dirname, '../frontend/public')));
-app.use(express.static(path.resolve(__dirname, '../frontend/src')));
-
+if(process.env.NODE_ENV === "production"){
+    //app.use(express.static(path.resolve(__dirname, './frontend/build')));
+}
 
 const process = async()=>{
     await pool.query("TRUNCATE students;")
@@ -44,6 +42,10 @@ app.get("/data", async(req, res) => {
 
 app.get("/for_store", (req,res) => {
     console.log(req.query.fname, req.query.mname);
+})
+
+app.get('*',(req,res)=>{
+    res.send('<h1>Error!</h1><br/><p>Change URL</p>')
 })
 
 app.listen(PORT, async() => {
