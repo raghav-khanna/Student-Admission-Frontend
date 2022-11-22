@@ -1,10 +1,11 @@
 import React from "react";
-import UgScholarship from "../Components/UG/UgScholarship";
+import UgBullet from "../Components/UG/UgBullet";
+import TempData from "../Components/Nirnay/TempData";
 
 const TryNirnay = () => {
   return (
     <div>
-      <UgScholarship />
+      <UgBullet dataArray={TempData} />
     </div>
   );
 };

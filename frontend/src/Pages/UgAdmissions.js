@@ -5,6 +5,7 @@ import UgProgrammes from '../Components/UG/UgProgrammes';
 import UgHighlight from '../Components/UG/UgHighlight';
 import UgModes from '../Components/UG/UgModes';
 import UgHead from '../Components/UG/UgHead';
+import UgScholarship from '../Components/UG/UgScholarship';
 
 const UgAdmissions = () => {
     return (
@@ -14,6 +15,7 @@ const UgAdmissions = () => {
             <UgProgrammes />
             <UgHighlight />
             <InstituteGlance />
+            <UgScholarship />
             <Footer />
         </div>
     )

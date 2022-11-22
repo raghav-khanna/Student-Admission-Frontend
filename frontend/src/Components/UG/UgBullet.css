@@ -28,8 +28,7 @@
 }
 
 .ug-regular-repeating-ul {
-    padding-left: 2em;
-    margin: 0;
+    padding-left: 1em;
     list-style: none;
     line-height: 2em;
     margin-block-start: 1em;
@@ -37,7 +36,6 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
-    padding: 5px 0;
 }
 
 .ug-regular-repeating-list-elements {
