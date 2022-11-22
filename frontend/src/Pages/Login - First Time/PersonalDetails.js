@@ -9,7 +9,6 @@ import "./LoginStyles.css";
 
 import { Personaldetails } from "../../Classes/Personaldetails";
 
-const a = new Personaldetails();
 const PersonalDetails = () => {
   const [progress, setProgress] = useOutletContext();
   const firstName = useRef(null);
@@ -22,6 +21,8 @@ const PersonalDetails = () => {
   const navigate = useNavigate();
 
   const nextPage = "/applicant/first_login/2";
+
+  const a = new Personaldetails();
 
   const handleSubmit = () => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
@@ -47,6 +48,7 @@ const PersonalDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>First Name</Form.Label>
             <Form.Control
+              required
               ref={firstName}
               size="lg"
               type="text"
@@ -79,6 +81,7 @@ const PersonalDetails = () => {
           <Form.Group className="mb-3">
             <Form.Label>Father Full Name</Form.Label>
             <Form.Control
+              required
               ref={fatherName}
               size="lg"
               placeholder="Please Enter your Father's Full Name"
@@ -90,6 +93,7 @@ const PersonalDetails = () => {
           <Form.Group className="mb-3">
             <Form.Label>Address Line 1</Form.Label>
             <Form.Control
+              required
               ref={address_1}
               size="lg"
               placeholder="House/Flat No., Street, Landmark"
@@ -106,6 +110,7 @@ const PersonalDetails = () => {
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
             <Form.Control
+              required
               ref={pin}
               size="lg"
               placeholder="Please Enter your PINCODE"

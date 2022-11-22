@@ -39,6 +39,7 @@ const SignUpComponent = () => {
             <Form.Group className="mb-3">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
+                required
                 size="lg"
                 type="email"
                 placeholder="Enter Your Email Address"
@@ -47,6 +48,7 @@ const SignUpComponent = () => {
             <Form.Group className="mb-3">
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
+                required
                 size="lg"
                 type="numeric"
                 placeholder="Enter Your 10-Digit Phone Number"
@@ -55,6 +57,7 @@ const SignUpComponent = () => {
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                required
                 size="lg"
                 type="password"
                 placeholder="Type a Password"
@@ -63,6 +66,7 @@ const SignUpComponent = () => {
             <Form.Group className="mb-3">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
+                required
                 size="lg"
                 type="password"
                 placeholder="Re-type the Password"

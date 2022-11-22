@@ -17,3 +17,9 @@
 .form-progress {
   margin-bottom: 2rem;
 }
+
+.error {
+  margin: 1rem;
+  color: red;
+  font-weight: bolder;
+}

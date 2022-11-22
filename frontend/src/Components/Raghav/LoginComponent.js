@@ -14,6 +14,7 @@ const LoginComponent = () => {
             <Form.Group className="mb-3">
               <Form.Label>Applicant Id</Form.Label>
               <Form.Control
+                required
                 size="lg"
                 type="text"
                 placeholder="Enter Applicant Id"
@@ -21,7 +22,12 @@ const LoginComponent = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control size="lg" type="password" placeholder="Password" />
+              <Form.Control
+                required
+                size="lg"
+                type="password"
+                placeholder="Password"
+              />
             </Form.Group>
             <Button className="mb-3" size="lg" variant="danger" type="submit">
               Login
