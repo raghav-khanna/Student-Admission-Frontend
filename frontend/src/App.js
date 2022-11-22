@@ -12,8 +12,9 @@ import PersonalDetails from "./Pages/Login - First Time/PersonalDetails";
 import AcademicDetails from "./Pages/Login - First Time/AcademicDetails";
 import DocumentSubmission from "./Pages/Login - First Time/DocumentSubmission";
 import ChoosePreferences from "./Pages/Login - First Time/ChoosePreferences";
-import ApplicantHome from "./Pages/Login - First Time/ApplicantHome";
+import ApplicantHome from "./Pages/After Login/ApplicantHome";
 import Successful from "./Pages/Login - First Time/Successful";
+import Allotment from "./Pages/After Login/Allotment";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
-        <Route path="/applicant/" element={<Outlet />}>
+        <Route path="/applicant/">
           <Route path="first_login/" element={<FirstTimeLogin />}>
             <Route index element={<PersonalDetails />} />
             <Route path="2" element={<AcademicDetails />} />
@@ -42,6 +43,7 @@ function App() {
             <Route path="success" element={<Successful />} />
           </Route>
           <Route path="home" element={<ApplicantHome />} />
+          <Route path="allotment" element={<Allotment />} />
         </Route>
 
         <Route
