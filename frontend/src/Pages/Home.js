@@ -6,18 +6,34 @@ import InstituteGlance from "../Components/Prateek/InstituteGlance";
 import PhotoGallery from "../Components/HomePage/PhotoGallery";
 import AboutUs from "../Components/HomePage/AboutUs";
 import Footer from "../Components/Nirnay/Footer";
+import GoToTop from "../Components/Nirnay/GoToTop";
+import AboutUs from "../Components/Nirnay/AboutUs";
+import { useState, useEffect } from "react";
+
 
 function Home() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("/data")
+      .then((res) => res.json())
+      .then((data) => setData(data.id))
+  }, []);
+
+
   return (
-    <div>
-      <GoToTop />
-      <BannerCards />
-      <Programmes />
-      <InstituteGlance />
-      <PhotoGallery />
-      <AboutUs />
-      <Footer />
-    </div>
+    <>
+      <p style={{color: 'pink'}}>{!data ? "Loading..." : data}</p>
+      <div>
+        <GoToTop />
+        <BannerCards />
+        <Programmes />
+        <InstituteGlance />
+        <PhotoGallery />
+        <AboutUs />
+        <Footer />
+      </div>
+    </>
   );
 }
 
