@@ -37,11 +37,9 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+    padding: 5px 0;
 }
 
 .ug-regular-repeating-list-elements {
-    list-style-type: disc;
-}
-.ug-regular-repeating-list-elements{
     list-style-type: disc;
 }
