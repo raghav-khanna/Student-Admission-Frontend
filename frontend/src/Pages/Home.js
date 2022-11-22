@@ -6,8 +6,6 @@ import InstituteGlance from "../Components/Prateek/InstituteGlance";
 import PhotoGallery from "../Components/HomePage/PhotoGallery";
 import AboutUs from "../Components/HomePage/AboutUs";
 import Footer from "../Components/Nirnay/Footer";
-import GoToTop from "../Components/Nirnay/GoToTop";
-import AboutUs from "../Components/Nirnay/AboutUs";
 import { useState, useEffect } from "react";
 
 
@@ -23,7 +21,7 @@ function Home() {
 
   return (
     <>
-      <p style={{color: 'pink'}}>{!data ? "Loading..." : data}</p>
+      <p style={{ color: 'pink' }}>{!data ? "Loading..." : data}</p>
       <div>
         <GoToTop />
         <BannerCards />
