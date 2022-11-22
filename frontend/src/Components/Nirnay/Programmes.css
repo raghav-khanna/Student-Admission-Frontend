@@ -20,12 +20,12 @@
   font-size: 1.1rem;
 }
 
-.tagh2 {
+.programmes-title-h2 {
   font-weight: 700;
   font-family: "Montserrat", sans-serif;
 }
 
-.tagh2::after {
+.programmes-title-h2::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -51,8 +51,8 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.sections-tab-child-h2 {
-  font-size: 1.6em;
+.programmes-sections-tab-child-h2 {
+  font-size: 1.5em;
   margin-bottom: 1rem;
   text-align: left;
   color: #000;
@@ -62,7 +62,7 @@
   border-bottom-color: rgb(204, 204, 204);
 }
 
-.sections-tab-child-h3 {
+.programmes-sections-tab-child-h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-family: "Montserrat", sans-serif;
@@ -76,8 +76,15 @@
   margin-inline-end: 0px;
 }
 
-.list-elements {
+.programmes-list-elements {
   line-height: 2rem;
   list-style: circle;
   padding-bottom: 0.6rem;
+  text-align: justify;
+  width: auto;
+}
+
+.programmes-ul {
+  margin-left: 0.5em;
+  margin-bottom: 0.2em;
 }

@@ -1,14 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./UG_PROG_OFFERED_AND_SEATS.css";
-const UG_PROG_OFFERED_AND_SEATS = () => {
+import "./UgProgrammesOfferedAndSeats.css";
+
+
+const UgProgrammesOfferedAndSeats = () => {
     return (
-        <div className="UG_Main_Container">
+        <div className="ug-Main-Container">
             <h1>UG Programmes Offered and Available Seats</h1>
-            <table className="UG_table">
-            
-                <thead className="UG_head">
-                    <tr className="table_head">
+            <table className="ug-table">
+
+                <thead className="ug-head">
+                    <tr className="table-head">
                         <th>Programmes</th>
                         <th className="seats">Seats</th>
                     </tr>
@@ -17,7 +19,7 @@ const UG_PROG_OFFERED_AND_SEATS = () => {
 
                     <tr className="gray-bg">
                         <td >B.Tech. in Computer Science and Engineering (CSE)</td>
-                        <td className="seats" rowSpan="3">240</td>                
+                        <td className="seats" rowSpan="3">240</td>
                     </tr>
                     <tr className="gray-bg">
                         <td >B.Tech. (Hons.) in CSE with Specialization in Artificial Intelligence &amp; Data Science (40 Max.)</td>
@@ -62,11 +64,11 @@ const UG_PROG_OFFERED_AND_SEATS = () => {
                     <tr className="white-bg">
                         <td>B.Tech. – M.Tech. (5 Year Integrated Dual Degree) in ECE</td>
                         <td className="seats">10</td>
-                    </tr>        
+                    </tr>
                 </tbody>
             </table>
-        </div>    
+        </div>
     );
 };
 
-export default UG_PROG_OFFERED_AND_SEATS;
+export default UgProgrammesOfferedAndSeats;

@@ -1,10 +1,12 @@
 import React from "react";
-import Sections from "../Components/Nirnay/Sections";
+import Footer from "../Components/Prateek/Footer";
+import InstituteGlance from "../Components/Prateek/InstituteGlance";
 
 const TryNirnay = () => {
   return (
     <div>
-      <Sections />
+      <InstituteGlance />
+      <Footer />
     </div>
   );
 };

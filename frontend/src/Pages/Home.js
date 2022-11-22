@@ -1,5 +1,5 @@
 import React from "react";
-import Sections from "../Components/Nirnay/Sections";
+import Programmes from "../Components/Nirnay/Programmes";
 import BannerCards from "../Components/Prateek/BannerCards";
 import InstituteGlance from "../Components/Prateek/InstituteGlance";
 import PhotoGallery from "../Components/Nirnay/PhotoGallery";
@@ -11,7 +11,7 @@ function Home() {
     <div>
       <GoToTop />
       <BannerCards />
-      <Sections />
+      <Programmes />
       <InstituteGlance />
       <PhotoGallery />
       <AboutUs />

@@ -1,4 +1,7 @@
 * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -11,16 +14,20 @@
   text-decoration-color: rgb(240, 69, 69);
   font-size: x-large;
   padding-top: 8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 .institute-information-container-parent {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap-reverse;
   /* margin: 2rem 10rem; */
   padding-bottom: 8rem;
+
 }
 
 .institute-information-container-row {
@@ -38,12 +45,17 @@
   margin: 1rem;
   flex-shrink: 1;
   width: 30%;
-  padding: 2rem;
+  /* padding: 5rem; */
   padding-bottom: 15rem;
   /* padding-top: 15rem; */
-  font-size: 1.3rem;
-  font-weight: bolder;
+  font-size: 1.5rem;
+  font-weight: 500;
   height: 25rem;
+  /* margin-right: 2rem;
+  margin-left: 2rem; */
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  color: #333333
 }
 
 .institute-information-card>figure {
@@ -62,15 +74,34 @@
   text-decoration: underline;
   text-decoration-color: rgb(227, 129, 129);
   text-underline-offset: 40%;
+  text-align: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
 }
 
-.container-ins {
-  background-color: #f2f2f2;
+.container {
+  background-color: #fff;
   margin-top: 5rem;
   height: fit-content;
 
 }
 
 .readmore {
-  margin-top: 5rem;
+  margin-top: 10rem;
+
+}
+
+.numbers {
+  color: #f31620;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  ;
+}
+
+.numbers2 {
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  ;
 }
