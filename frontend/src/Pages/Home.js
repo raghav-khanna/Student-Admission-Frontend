@@ -1,12 +1,15 @@
 import React from "react";
-import Programmes from "../Components/Nirnay/Programmes";
-import BannerCards from "../Components/Prateek/BannerCards";
+import GoToTop from "../Components/Nirnay/GoToTop";
+import BannerCards from "../Components/HomePage/BannerCards";
+import Programmes from "../Components/HomePage/Programmes";
 import InstituteGlance from "../Components/Prateek/InstituteGlance";
-import PhotoGallery from "../Components/Nirnay/PhotoGallery";
+import PhotoGallery from "../Components/HomePage/PhotoGallery";
+import AboutUs from "../Components/HomePage/AboutUs";
 import Footer from "../Components/Nirnay/Footer";
 import GoToTop from "../Components/Nirnay/GoToTop";
 import AboutUs from "../Components/Nirnay/AboutUs";
 import { useState, useEffect } from "react";
+
 
 function Home() {
   const [data, setData] = useState(null);
