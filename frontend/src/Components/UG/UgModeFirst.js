@@ -3,18 +3,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./UgModeFirst.css";
 import UgImpDates from './UgImpDates';
 
-const UgModeFirst = () => {
+const UgModeFirst = ({ title1, title2, dataArray }) => {
     return (
-        <section className="ug-mode-first">
-            <div className="ug-mode-first-container">
-                <div className="ug-mode-first-title">
-                    <h2 className="ug-mode-first-title-h2">
-                        TITLE
-                    </h2>
+        <>
+            <section className="ug-mode-first">
+                <div className="ug-mode-first-container">
+                    <div className="ug-mode-first-title">
+                        <h2 className="ug-mode-first-title-h2">
+                            {title1}
+                        </h2>
+                    </div>
                 </div>
-                <UgImpDates />
-            </div>
-        </section>
+            </section>
+            <UgImpDates x={title2} arr={dataArray} />
+        </>
     )
 }
 
