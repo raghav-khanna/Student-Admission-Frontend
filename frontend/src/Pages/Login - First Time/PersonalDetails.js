@@ -7,10 +7,9 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { useRef } from "react";
 import "./LoginStyles.css";
 
-import {Personaldetails} from'../../Classes/Personaldetails'
+import { Personaldetails } from "../../Classes/Personaldetails";
 
-
-const a = new Personaldetails()
+const a = new Personaldetails();
 const PersonalDetails = () => {
   const [progress, setProgress] = useOutletContext();
   const firstName = useRef(null);
@@ -22,25 +21,22 @@ const PersonalDetails = () => {
   const pin = useRef(null);
   const navigate = useNavigate();
 
-
   const nextPage = "/applicant/first_login/2";
 
   const handleSubmit = () => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
     setProgress(progress + 20);
     navigate(nextPage);
-    a.id = 0 //need to assign
-    a.first_name  = firstName.current.value
-    a.middle_name = middleName.current.value
-    a.last_name = lastName.current.value
-    a.father_name = fatherName.current.value
-    a.address1 = address_1.current.value
-    a.address2 = address_2.current.value
-    a.zip = pin.current.value
-    console.log(a)
+    a.id = 0; //need to assign
+    a.first_name = firstName.current.value;
+    a.middle_name = middleName.current.value;
+    a.last_name = lastName.current.value;
+    a.father_name = fatherName.current.value;
+    a.address1 = address_1.current.value;
+    a.address2 = address_2.current.value;
+    a.zip = pin.current.value;
+    console.log(a);
   };
-
-
 
   return (
     <div>
@@ -83,7 +79,7 @@ const PersonalDetails = () => {
           <Form.Group className="mb-3">
             <Form.Label>Father Full Name</Form.Label>
             <Form.Control
-              ref = {fatherName}
+              ref={fatherName}
               size="lg"
               placeholder="Please Enter your Father's Full Name"
             />
@@ -94,7 +90,7 @@ const PersonalDetails = () => {
           <Form.Group className="mb-3">
             <Form.Label>Address Line 1</Form.Label>
             <Form.Control
-              ref = {address_1}
+              ref={address_1}
               size="lg"
               placeholder="House/Flat No., Street, Landmark"
             />
@@ -104,18 +100,15 @@ const PersonalDetails = () => {
         <Row className="mb-3">
           <Form.Group as={Col} className="mb-3">
             <Form.Label>Address Line 2</Form.Label>
-            <Form.Control
-              ref = {address_2} 
-              size="lg" 
-              placeholder="City, State" />
+            <Form.Control ref={address_2} size="lg" placeholder="City, State" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
             <Form.Control
-              ref = {pin}
+              ref={pin}
               size="lg"
-              placeholder = "Please Enter your PINCODE" 
+              placeholder="Please Enter your PINCODE"
             />
           </Form.Group>
         </Row>
