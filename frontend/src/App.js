@@ -16,24 +16,10 @@ import ApplicantHome from "./Pages/Login - First Time/ApplicantHome";
 import Successful from "./Pages/Login - First Time/Successful";
 import UgAdmissions from "./Pages/UgAdmissions";
 import UgRegularMode from "./Pages/UgRegularMode";
-import { useState, useEffect } from "react";
 
 function App() {
-
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/data")
-      .then((res) => res.json())
-      .then((data) => setData(data.id))
-  }, []);
-
-
-
-
   return (
     <div className="App">
-      <p style={{color: 'pink'}}>{!data ? "Loading..." : data}</p>
       {/* <Navbar /> */}
       <Routes>
         {/* ----------ALL NO-LOGIN PAGES ROUTES---------- */}

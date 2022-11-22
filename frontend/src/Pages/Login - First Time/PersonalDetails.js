@@ -4,18 +4,29 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useRef } from "react";
 import "./LoginStyles.css";
+
 
 const PersonalDetails = () => {
   const [progress, setProgress] = useOutletContext();
   const navigate = useNavigate();
 
+  const firstName = useRef(null);
+  const middleName = useRef(null);
+  const lastName = useRef(null);
+
+
   const nextPage = "/applicant/first_login/2";
 
   const handleSubmit = () => {
+    fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
     setProgress(progress + 20);
     navigate(nextPage);
+    console.log(firstName.current.value, middleName.current.value, lastName.current.value)
   };
+
+
 
   return (
     <div>
@@ -26,6 +37,7 @@ const PersonalDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>First Name</Form.Label>
             <Form.Control
+              ref={firstName}
               size="lg"
               type="text"
               placeholder="Enter Your First Name"
@@ -35,6 +47,7 @@ const PersonalDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>Middle Name</Form.Label>
             <Form.Control
+              ref={middleName}
               size="lg"
               type="text"
               placeholder="Enter Your Middle Name"
@@ -44,6 +57,7 @@ const PersonalDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>Last Name</Form.Label>
             <Form.Control
+              ref={lastName}
               size="lg"
               type="text"
               placeholder="Enter Your Middle Name"

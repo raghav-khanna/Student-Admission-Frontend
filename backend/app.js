@@ -22,24 +22,32 @@ app.use(express.static(path.resolve(__dirname, '../frontend/src')));
 
 
 const process = async()=>{
-    await retrieveData(applicants, branches)
     await pool.query("TRUNCATE students;")
-    /* for(let round_no = 1; round_no<total_rounds+1;++round_no){
+    await retrieveData(applicants, branches)
+    
+    for(let round_no = 1; round_no<total_rounds+1;++round_no){
         console.log(`ROUND ${round_no}\n\n`)
         Round(applicants,branches)
         PostAllotment(applicants, branches, round_no, total_rounds)
-    } */
+    }
     //applicants.map((applicant)=> console.log(applicant.id, applicant.prefs))
 }
 
 app.get("/data", async(req, res) => {
-    //console.clear()
+    console.log(req.url)
+    applicants = []
+    branches = []
     await process()
     //res.json({ message: "Hello from server!" });
     res.json(applicants[0])
 });
 
-app.listen(PORT, () => {
+app.get("/for_store", (req,res) => {
+    console.log(req.query.fname, req.query.mname);
+})
+
+app.listen(PORT, async() => {
+    console.clear()
     console.log(`Server listening on ${PORT}`);
 });
 
