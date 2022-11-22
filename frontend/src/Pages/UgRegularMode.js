@@ -1,12 +1,12 @@
 import React from 'react';
-import UgBullet from '../Components/Nirnay/UgBullet';
-import UgProgrammesOfferedAndSeats from '../Components/Prateek/UgProgrammesOfferedAndSeats';
+import UgModeFirst from '../Components/Nirnay/UgModeFirst';
+import UgModes from '../Components/Nirnay/UgModes';
 
 const UgRegularMode = () => {
     return (
         <div>
-            {/* <UgProgrammesOfferedAndSeats /> */}
-            <UgBullet />
+            <UgModes />
+            <UgModeFirst />
         </div>
     )
 }
