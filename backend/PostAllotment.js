@@ -126,25 +126,26 @@ const DecideStatus = (applicant, branches, round_no, total_rounds) => {
 
     if(applicant.status == -1){
         //nothing
-        //let choice = prompt("Press 0 for Drop\nElse will continue");
         if(round_no == total_rounds){console.log(`${applicant.id} is thrown out of college\n`)}
         else if(choice==0){Drop(applicant,branches);}
         else{console.log(`${applicant.id} continues to stay in further rounds\n`)}
     }
-    else if(!applicant.status || round_no == total_rounds){
-        //1st pref case or last round case
-        //let choice = prompt("Press 0 for Drop\nPress 3 for Freeze\n");
+    else if(!applicant.status){
+        //1st pref case
         if(choice==0){Drop(applicant,branches);}
         else if(choice==3){Freeze(applicant, branches, round_no);}
-        else{console.log(`WRONG INPUT`)}
+        else{Drop(applicant,branches)} //kicked out of the process 
     }
     else{
         //nth pref case
-        //let choice = prompt("Press 0 for Drop\nPress 1 for Float\nPress 2 for Hold\nPress 3 for Freeze");
         if(choice==0){Drop(applicant,branches)}
         else if(choice==1 && !applicant.on_hold){Float(applicant,branches);}
-        else if(choice==2){Hold(applicant,branches);}
+        else if(choice==2 && round_no != total_rounds){Hold(applicant,branches);}
         else if(choice==3){Freeze(applicant, branches, round_no)}
+        else{
+            if(!applicant.on_hold){Drop(applicant,branches)}
+            else{console.log(`${applicant.id} continues to stay in further rounds\n`)}
+        }
     }
 }
 
