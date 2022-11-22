@@ -18,6 +18,8 @@ import Allotment from "./Pages/After Login/Allotment";
 import UgAdmissions from "./Pages/UgAdmissions";
 import UgRegularMode from "./Pages/UgRegularMode";
 import FeePayment from "./Pages/FeePayment";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/try_prateek" element={<TryPrateek />} />
           <Route path="/ug" element={<UgAdmissions />} />
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
