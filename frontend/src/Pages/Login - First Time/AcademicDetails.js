@@ -9,8 +9,6 @@ import "./LoginStyles.css";
 
 import { Academicdetails } from "../../Classes/Academicdetails";
 
-const d = new Academicdetails();
-
 const AcademicDetails = () => {
   const [progress, setProgress] = useOutletContext();
   const board10 = useRef(null);
@@ -26,6 +24,8 @@ const AcademicDetails = () => {
   const navigate = useNavigate();
 
   const nextPage = "/applicant/first_login/3";
+
+  const d = new Academicdetails();
 
   const handleSubmit = () => {
     setProgress(progress + 20);
@@ -52,8 +52,13 @@ const AcademicDetails = () => {
         <Row className="mb-5">
           <Form.Group as={Col}>
             <Form.Label>10th Board</Form.Label>
-            <Form.Select ref={board10} size="lg" defaultValue="Choose...">
-              <option>Choose...</option>
+            <Form.Select
+              required
+              ref={board10}
+              size="lg"
+              defaultValue="Choose..."
+            >
+              <option value="">Choose...</option>
               <option>CBSE</option>
               <option>ISC</option>
               <option>Maharashtra Board</option>
@@ -63,6 +68,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>CGPA/Percentage</Form.Label>
             <Form.Control
+              required
               ref={percentage10}
               size="lg"
               type="number"
@@ -73,6 +79,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>Year of Passing</Form.Label>
             <Form.Control
+              required
               ref={yop10}
               size="lg"
               type="number"
@@ -84,6 +91,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>10th Roll No.</Form.Label>
             <Form.Control
+              required
               ref={rollno10}
               size="lg"
               type="number"
@@ -96,8 +104,13 @@ const AcademicDetails = () => {
         <Row className="mb-5">
           <Form.Group as={Col}>
             <Form.Label>12th Board</Form.Label>
-            <Form.Select ref={board12} size="lg" defaultValue="Choose...">
-              <option>Choose...</option>
+            <Form.Select
+              required
+              ref={board12}
+              size="lg"
+              defaultValue="Choose..."
+            >
+              <option value="">Choose...</option>
               <option>CBSE</option>
               <option>ISC</option>
               <option>Maharashtra Board</option>
@@ -107,6 +120,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>Percentage</Form.Label>
             <Form.Control
+              required
               ref={percentage12}
               size="lg"
               type="number"
@@ -117,6 +131,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>Year of Passing</Form.Label>
             <Form.Control
+              required
               ref={yop12}
               size="lg"
               type="number"
@@ -128,6 +143,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>12th Roll No.</Form.Label>
             <Form.Control
+              required
               ref={rollno12}
               size="lg"
               type="number"
@@ -141,6 +157,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>JEE Mains Application Number</Form.Label>
             <Form.Control
+              required
               ref={app_no}
               size="lg"
               type="number"
@@ -152,6 +169,7 @@ const AcademicDetails = () => {
           <Form.Group as={Col}>
             <Form.Label>JEE Mains Rank</Form.Label>
             <Form.Control
+              required
               ref={rank}
               size="lg"
               type="number"
