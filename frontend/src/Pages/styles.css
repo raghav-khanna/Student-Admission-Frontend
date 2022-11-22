@@ -1,1 +1,11 @@
+.fees-container {
+  padding: 3rem;
+  width: 100rem;
+  border: 2px solid red;
+  margin: 3rem auto;
+}
 
+.fees-container-title {
+  font-size: x-large;
+  margin: 2rem 0;
+}

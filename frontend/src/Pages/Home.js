@@ -6,9 +6,7 @@ import InstituteGlance from "../Components/Prateek/InstituteGlance";
 import PhotoGallery from "../Components/HomePage/PhotoGallery";
 import AboutUs from "../Components/HomePage/AboutUs";
 import Footer from "../Components/Nirnay/Footer";
-
 import { useState, useEffect } from "react";
-
 
 function Home() {
   const [data, setData] = useState(null);
@@ -16,13 +14,12 @@ function Home() {
   useEffect(() => {
     fetch("/data")
       .then((res) => res.json())
-      .then((data) => setData(data.id))
+      .then((data) => setData(data.id));
   }, []);
-
 
   return (
     <>
-      <p style={{color: 'pink'}}>{!data ? "Loading..." : data}</p>
+      <p style={{ color: "pink" }}>{!data ? "Loading..." : data}</p>
       <div>
         <GoToTop />
         <BannerCards />
