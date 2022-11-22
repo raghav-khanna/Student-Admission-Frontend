@@ -3,24 +3,48 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useLocation } from "react-router-dom";
 import "./LoginStyles.css";
 import { Preference } from "../../Classes/Preference";
 
 const ChoosePreferences = () => {
+  const [selectedPref, setSelectedPref] = useState([]);
   const [isError, setIsError] = useState(false);
   const [progress, setProgress] = useOutletContext();
   let pref_array = useRef(["null", "null", "null", "null", "null", "null"]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const error = "All the Preferences must be filled in order!";
   const nextPage = "/applicant/first_login/success";
+
+  // let listArray = [
+  //   <option key={1} value={"CSE"}>
+  //     Computer Science Engineering (CSE){" "}
+  //   </option>,
+  //   <option key={2} value={"CCE"}>
+  //     Computer and Communication Engineering (CCE){" "}
+  //   </option>,
+  //   <option key={3} value={"ECE"}>
+  //     Electrical and Communication Engineering (ECE){" "}
+  //   </option>,
+  //   <option key={4} value={"MME"}>
+  //     Mechanical and Mechatronics Engineering (MME){" "}
+  //   </option>,
+  //   <option key={5} value={"DCS"}>
+  //     Dual Degree Computer Science Engineering (DCS){" "}
+  //   </option>,
+  //   <option key={6} value={"DEC"}>
+  //     Dual Degree Electrical and Communication Engineering (DEC)
+  //   </option>,
+  // ];
+
   let flag = false;
 
   const p = new Preference();
 
-  const getbranch = (pref) => {
-    return pref.slice(pref.length - 4, pref.length - 1);
+  const handleChange = (e) => {
+    setSelectedPref((arr) => [...arr, e.target.value]);
   };
 
   const handleSubmit = (e) => {
@@ -32,12 +56,16 @@ const ChoosePreferences = () => {
         setIsError(true);
       }
       pref.value === "" ? (flag = true) : (flag = false);
-      console.log(flag + " -> " + isError);
+      // console.log(flag + " -> " + isError);
     });
 
-    // if (!isError) {
-    //   navigate(nextPage);
-    // }
+    p.dsp = pref_array;
+    p.waiting = 10000;
+    console.log(location.state);
+
+    location.state.push(p);
+
+    navigate(nextPage, { state: location.state });
   };
 
   return (
@@ -50,27 +78,31 @@ const ChoosePreferences = () => {
           <Form.Group className="mb-5">
             <Form.Label>Preference - 1</Form.Label>
             <Form.Select
+              required
               ref={(e) => {
                 pref_array.current[0] = e;
               }}
               size="lg"
               defaultValue="Choose..."
+              onChange={(e) => handleChange(e)}
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
               </option>
             </Form.Select>
@@ -83,24 +115,27 @@ const ChoosePreferences = () => {
               }}
               size="lg"
               defaultValue="Choose..."
+              onChange={(e) => handleChange(e)}
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
-              </option>{" "}
+              </option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-5">
@@ -113,22 +148,24 @@ const ChoosePreferences = () => {
               defaultValue="Choose..."
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
-              </option>{" "}
+              </option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-5">
@@ -141,22 +178,24 @@ const ChoosePreferences = () => {
               defaultValue="Choose..."
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
-              </option>{" "}
+              </option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-5">
@@ -169,22 +208,24 @@ const ChoosePreferences = () => {
               defaultValue="Choose..."
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
-              </option>{" "}
+              </option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-5">
@@ -197,22 +238,24 @@ const ChoosePreferences = () => {
               defaultValue="Choose..."
             >
               <option value={""}>Choose...</option>
-              <option value={"CSE"}>Computer Science Engineering (CSE) </option>
-              <option value={"CCE"}>
+              <option key={1} value={"CSE"}>
+                Computer Science Engineering (CSE){" "}
+              </option>
+              <option key={2} value={"CCE"}>
                 Computer and Communication Engineering (CCE){" "}
               </option>
-              <option value={"ECE"}>
+              <option key={3} value={"ECE"}>
                 Electrical and Communication Engineering (ECE){" "}
               </option>
-              <option value={"MME"}>
+              <option key={4} value={"MME"}>
                 Mechanical and Mechatronics Engineering (MME){" "}
               </option>
-              <option value={"DCS"}>
+              <option key={5} value={"DCS"}>
                 Dual Degree Computer Science Engineering (DCS){" "}
               </option>
-              <option value={"DEC"}>
+              <option key={6} value={"DEC"}>
                 Dual Degree Electrical and Communication Engineering (DEC)
-              </option>{" "}
+              </option>
             </Form.Select>
           </Form.Group>
         </Row>

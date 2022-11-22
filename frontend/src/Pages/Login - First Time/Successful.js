@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Successful = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location.state);
 
   const nextPage = "/applicant/home";
 

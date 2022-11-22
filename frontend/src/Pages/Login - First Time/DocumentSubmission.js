@@ -3,19 +3,20 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import "./LoginStyles.css";
 
 const DocumentSubmission = () => {
   const [progress, setProgress] = useOutletContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const nextPage = "/applicant/first_login/preferences";
 
   const handleSubmit = () => {
     setProgress(progress + 20);
 
-    navigate(nextPage);
+    navigate(nextPage, { state: location.state });
   };
   return (
     <div>
