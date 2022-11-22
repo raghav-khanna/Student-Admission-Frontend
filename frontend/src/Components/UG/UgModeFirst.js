@@ -1,6 +1,7 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./UgModeFirst.css";
+import UgImpDates from './UgImpDates';
 
 const UgModeFirst = () => {
     return (
@@ -11,6 +12,7 @@ const UgModeFirst = () => {
                         TITLE
                     </h2>
                 </div>
+                <UgImpDates />
             </div>
         </section>
     )

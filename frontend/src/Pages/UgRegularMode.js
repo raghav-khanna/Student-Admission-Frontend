@@ -1,6 +1,7 @@
 import React from 'react';
-import UgModeFirst from '../Components/Nirnay/UgModeFirst';
-import UgModes from '../Components/Nirnay/UgModes';
+import UgModes from '../Components/UG/UgModes';
+import UgModeFirst from '../Components/UG/UgModeFirst';
+import UgImpDates from '../Components/UG/UgImpDates';
 
 const UgRegularMode = () => {
     return (
