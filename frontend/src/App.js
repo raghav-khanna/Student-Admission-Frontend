@@ -15,6 +15,8 @@ import ChoosePreferences from "./Pages/Login - First Time/ChoosePreferences";
 import ApplicantHome from "./Pages/After Login/ApplicantHome";
 import Successful from "./Pages/Login - First Time/Successful";
 import Allotment from "./Pages/After Login/Allotment";
+import UgAdmissions from "./Pages/UgAdmissions";
+import UgRegularMode from "./Pages/UgRegularMode";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="/try_nirnay" element={<TryNirnay />} />
           <Route path="/try_raghav" element={<TryRaghav />} />
           <Route path="/try_prateek" element={<TryPrateek />} />
+          <Route path="/ug" element={<UgAdmissions />} />
+          <Route path="/ug_regular_mode" element={<UgRegularMode />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}

@@ -1,11 +1,10 @@
 import React from "react";
-// import UG_Highlight_section from "../Components/Nirnay/UG_Highlight_section";
-import UG_Highlight_section from "../Components/Prateek/UG_Highlight_section";
+import UgBulleted from "../Components/Prateek/UgBulleted";
 
 const TryPrateek = () => {
   return (
     <div>
-      <UG_Highlight_section />
+      <UgBulleted />
     </div>
   );
 };
