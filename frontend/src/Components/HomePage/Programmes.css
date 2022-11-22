@@ -17,10 +17,10 @@
   position: relative;
   text-align: center;
   margin-bottom: 3em;
-  font-size: 1.1rem;
 }
 
 .programmes-title-h2 {
+  font-size: 2em;
   font-weight: 700;
   font-family: "Montserrat", sans-serif;
 }
