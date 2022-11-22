@@ -12,10 +12,14 @@ import PersonalDetails from "./Pages/Login - First Time/PersonalDetails";
 import AcademicDetails from "./Pages/Login - First Time/AcademicDetails";
 import DocumentSubmission from "./Pages/Login - First Time/DocumentSubmission";
 import ChoosePreferences from "./Pages/Login - First Time/ChoosePreferences";
-import ApplicantHome from "./Pages/Login - First Time/ApplicantHome";
+import ApplicantHome from "./Pages/After Login/ApplicantHome";
 import Successful from "./Pages/Login - First Time/Successful";
+import Allotment from "./Pages/After Login/Allotment";
 import UgAdmissions from "./Pages/UgAdmissions";
 import UgRegularMode from "./Pages/UgRegularMode";
+import FeePayment from "./Pages/FeePayment";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 function App() {
   return (
@@ -34,10 +38,12 @@ function App() {
           <Route path="/try_prateek" element={<TryPrateek />} />
           <Route path="/ug" element={<UgAdmissions />} />
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
-        <Route path="/applicant/" element={<Outlet />}>
+        <Route path="/applicant/">
           <Route path="first_login/" element={<FirstTimeLogin />}>
             <Route index element={<PersonalDetails />} />
             <Route path="2" element={<AcademicDetails />} />
@@ -45,7 +51,9 @@ function App() {
             <Route path="preferences" element={<ChoosePreferences />} />
             <Route path="success" element={<Successful />} />
           </Route>
+          <Route path="fee_payment" element={<FeePayment />} />
           <Route path="home" element={<ApplicantHome />} />
+          <Route path="allotment" element={<Allotment />} />
         </Route>
 
         <Route

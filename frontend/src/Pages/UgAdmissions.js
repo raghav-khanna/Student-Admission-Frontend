@@ -8,17 +8,17 @@ import UgHead from '../Components/UG/UgHead';
 import UgScholarship from '../Components/UG/UgScholarship';
 
 const UgAdmissions = () => {
-    return (
-        <div>
-            <UgModes />
-            <UgHead />
-            <UgProgrammes />
-            <UgHighlight />
-            <InstituteGlance />
-            <UgScholarship />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <UgModes />
+      <UgHead />
+      <UgProgrammes />
+      <UgHighlight />
+      <InstituteGlance />
+      <UgScholarship />
+      <Footer />
+    </div>
+  )
 }
 
 export default UgAdmissions;
