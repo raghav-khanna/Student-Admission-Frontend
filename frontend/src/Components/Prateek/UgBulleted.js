@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./UgBulleted.css";
 const UgBulleted = () => {
     return (
-        <div className="UG_bulleted_note_main">
+        <div className="UG-bulleted-note-main">
             <div className="sections-tab-child-sub-header">
-                <h3 className="sections-tab-child-h3">
+                <h3 className="UG-bulleted-note-head">
                     Note:
                 </h3>
             </div>

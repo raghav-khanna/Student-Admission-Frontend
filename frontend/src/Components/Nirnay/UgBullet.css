@@ -55,3 +55,6 @@
     text-align: start !important;
     text-align-last: start !important;
 }
+.ug-regular-repeating-list-elements{
+    list-style-type: disc;
+}

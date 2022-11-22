@@ -2,6 +2,17 @@ import React from "react";
 import "./UgBullet.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
+function NumberList(props = ["AB","BC","CD"]) {
+    const numbers = props.numbers;
+    const listItems = numbers.map((number) =>
+    <li className="ug-regular-repeating-list-elements">{number}</li>
+    );
+    return (
+        <ul className="ug-regular-repeating-ul">{listItems}</ul>
+    );
+  }
+
 const UgBullet = () => {
     return (
         <section className="ug-regular-repeating-feature">
@@ -27,6 +38,7 @@ const UgBullet = () => {
                     <ul className="ug-regular-repeating-ul">
                         <li className="ug-regular-repeating-list-elements">Please refer to this {/*<a href="files/Instructions to fill branch preferences.pdf" target="_blank" style="color: #d1252d;">(link of the document)</a> */} document for filling in branch preferences.</li>
                     </ul>
+                    NumberList(props);
                 </div>
             </div >
         </section >
