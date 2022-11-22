@@ -101,4 +101,4 @@ const UgScholarship = () => {
     )
 }
 
-export default UgScholarship
+export default UgScholarship;
