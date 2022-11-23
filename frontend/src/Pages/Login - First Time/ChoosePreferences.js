@@ -32,6 +32,7 @@ import { Preference } from "../../Classes/Preference";
 const ChoosePreferences = () => {
   const [selectedPref, setSelectedPref] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [dspArr, setDspArr] = useState([]);
   const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
   let [chosenPref, setChosenPref] = useState([]);
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ const ChoosePreferences = () => {
 
     console.log(p);
     setFormData({ ...formData, p });
+
     // console.log(formData);
 
     navigate(nextPage);
