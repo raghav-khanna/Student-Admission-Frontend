@@ -6,6 +6,7 @@ import UgHighlight from '../Components/UG/UgHighlight';
 import UgModes from '../Components/UG/UgModes';
 import UgHead from '../Components/UG/UgHead';
 import UgScholarship from '../Components/UG/UgScholarship';
+import GoToTop from '../Components/Nirnay/GoToTop';
 
 const UgAdmissions = () => {
   return (
@@ -17,6 +18,7 @@ const UgAdmissions = () => {
       <InstituteGlance />
       <UgScholarship />
       <Footer />
+      <GoToTop />
     </div>
   )
 }
