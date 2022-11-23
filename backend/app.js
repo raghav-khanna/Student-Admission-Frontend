@@ -80,6 +80,24 @@ app.get("/load", async (req, res) => {
   });
 });
 
+app.post("/signupdata", async(req, res)=>{
+    console.log(req.body.data);
+    const {email_id, phone_no, password} = req.body.data
+    await pool.query("INSERT INTO signup(email_id, phone_no, password) VALUES ($1, $2, $3);",
+      [email_id, phone_no, password])
+      .then(()=>console.log("Credentials stored"))
+      .catch((err)=>console.log(err))
+
+    let results  
+    await pool.query("SELECT id FROM signup WHERE email_id=($1);",[email_id])
+      .then((data)=>{results = data;console.log("ID retrived")})
+      .catch((err)=>console.log(err))
+
+    const extended_id = "23LNM" + results.rows[0].id
+    res.json(extended_id);
+});
+
+
 app.post("/store", async (req, res) => {
     try {
         const {id, first_name, middle_name, last_name, father_name, address1, address2, zip} = req.body.data.a
