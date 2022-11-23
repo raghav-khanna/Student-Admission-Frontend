@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const Successful = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  console.log(location.state);
+  const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
 
   const nextPage = "/applicant/home";
 
   const handleClick = () => {
+    fetch(`/store`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: formData }),
+    });
+    console.log("Data -> " + formData.p.dsp);
+
     navigate(nextPage);
   };
 
@@ -18,7 +25,7 @@ const Successful = () => {
     <div>
       <h1>You've Successfully submitted your details</h1>
 
-      <Button size="lg" variant="danger" type="submit" onClick={handleClick}>
+      <Button size="lg" variant="danger" onClick={handleClick}>
         Go to Home
       </Button>
     </div>

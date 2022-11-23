@@ -10,7 +10,10 @@ import "./LoginStyles.css";
 import { Academicdetails } from "../../Classes/Academicdetails";
 
 const AcademicDetails = () => {
-  const [progress, setProgress] = useOutletContext();
+  const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
+  const navigate = useNavigate();
+
+  //Use Ref Hooks
   const board10 = useRef(null);
   const percentage10 = useRef(null);
   const yop10 = useRef(null);
@@ -21,15 +24,15 @@ const AcademicDetails = () => {
   const rollno12 = useRef(null);
   const app_no = useRef(null);
   const rank = useRef(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  //
 
   const nextPage = "/applicant/first_login/3";
-
   const d = new Academicdetails();
 
   const handleSubmit = () => {
     setProgress(progress + 20);
+
+    //Use Ref Hooks
     d.id = 0; //need to assign
     d.board_10 = board10.current.value;
     d.percentage_10 = percentage10.current.value;
@@ -41,9 +44,11 @@ const AcademicDetails = () => {
     d.rollno_12 = rollno12.current.value;
     d.application_no = app_no.current.value;
     d.mains_rank = rank.current.value;
-    location.state.push(d);
-    console.log(location.state);
-    navigate(nextPage, { state: location.state });
+    //
+
+    setFormData({ ...formData, d });
+    console.log(formData);
+    navigate(nextPage);
   };
 
   return (

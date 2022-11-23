@@ -10,7 +10,9 @@ import "./LoginStyles.css";
 import { Personaldetails } from "../../Classes/Personaldetails";
 
 const PersonalDetails = () => {
-  const [progress, setProgress] = useOutletContext();
+  const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
+  const navigate = useNavigate();
+  //Use Ref Hooks
   const firstName = useRef(null);
   const middleName = useRef(null);
   const lastName = useRef(null);
@@ -18,16 +20,17 @@ const PersonalDetails = () => {
   const address_1 = useRef(null);
   const address_2 = useRef(null);
   const pin = useRef(null);
-  const navigate = useNavigate();
+  //
 
   const nextPage = "/applicant/first_login/2";
-
   const a = new Personaldetails();
   let applicantObjectArray = [];
 
   const handleSubmit = () => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
     setProgress(progress + 20);
+
+    //Use Ref Hooks
     a.id = 0; //need to assign
     a.first_name = firstName.current.value;
     a.middle_name = middleName.current.value;
@@ -36,9 +39,11 @@ const PersonalDetails = () => {
     a.address1 = address_1.current.value;
     a.address2 = address_2.current.value;
     a.zip = pin.current.value;
-    // console.log(a);
-    applicantObjectArray.push(a);
-    navigate(nextPage, { state: applicantObjectArray });
+    //
+
+    setFormData({ ...formData, a });
+
+    navigate(nextPage);
   };
 
   return (
