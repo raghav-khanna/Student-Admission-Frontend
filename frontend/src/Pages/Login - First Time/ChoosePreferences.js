@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useNavigate, useOutletContext } from "react-router-dom";
@@ -32,13 +31,13 @@ import { Preference } from "../../Classes/Preference";
 const ChoosePreferences = () => {
   const [selectedPref, setSelectedPref] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [dspArr, setDspArr] = useState([]);
   const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
   let [chosenPref, setChosenPref] = useState([]);
   const navigate = useNavigate();
 
   const error = "All the Preferences must be filled in order!";
   const nextPage = "/applicant/first_login/success";
+  let dspArr = [{}];
 
   // let listArray = [
   //   <option key={1} value={"CSE"}>
@@ -63,7 +62,7 @@ const ChoosePreferences = () => {
 
   let flag = false;
 
-  const p = new Preference();
+  const prefs = new Preference();
 
   const handleChange = (e) => {
     setSelectedPref((arr) => [...arr, e.target.value]);
@@ -74,11 +73,15 @@ const ChoosePreferences = () => {
     e.preventDefault();
     setProgress(progress + 20);
 
-    p.dsp = chosenPref;
-    p.waiting = 10000;
+    chosenPref.forEach((val) => {
+      // console.log("Current Val -> " + val);
+      dspArr.push({ dsp: val, waiting: 10000 });
+    });
 
-    console.log(p);
-    setFormData({ ...formData, p });
+    prefs.dsp = dspArr;
+    console.log(dspArr);
+    // console.log(p);
+    setFormData({ ...formData, prefs });
 
     // console.log(formData);
 
