@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -7,6 +7,8 @@ import "./styles.css";
 // import SignUp from "./SignUpPage";
 
 const Login = ({ isAdmin = false }) => {
+  const [signedUp, setSignedUp] = useState(false);
+
   const applicant_id = useRef(null);
   const applicant_password = useRef(null);
 
