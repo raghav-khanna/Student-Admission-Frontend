@@ -1,5 +1,6 @@
 const reg_imp_dates =
   [
+    ["Events", "Dates"],
     ["Online application form opens", "20 May 2022"],
     ["Last date for filling online application form", "6 September 2022"],
     ["Branch Preference Filling", "8th-13th September 2022 5:00 PM"],

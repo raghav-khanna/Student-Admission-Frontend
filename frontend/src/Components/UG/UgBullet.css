@@ -1,10 +1,10 @@
-/* .ug-regular-repeating-feature {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+.ug-regular-repeating-feature {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     font-size: 16px;
 }
 
-.ug-regular-repeating-feature-container {
+/* .ug-regular-repeating-feature-container {
     padding-left: 1.5em;
     padding-right: 1.5em;
     margin-left: auto;

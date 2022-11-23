@@ -13,9 +13,9 @@ const UgModeFirst = ({ title1, title2, dataArray }) => {
                             {title1}
                         </h2>
                     </div>
+                    <UgImpDates x={title2} arr={dataArray} />
                 </div>
             </section>
-            <UgImpDates x={title2} arr={dataArray} />
         </>
     )
 }
