@@ -52,26 +52,30 @@ app.get("/load", async (req, res) => {
 });
 
 app.post("/store", async (req, res) => {
-  console.log("Data is -> \n");
-  console.log(req.body);
-  //   await pool.query(
-  //     `INSERT INTO personaldetails(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
-  //     VALUES ($1, $2, $3, $4, $5, %6, $7, $8);`,
-  //     []
-  //   );
+    console.log("Data is -> \n");
+    console.log(req.body.data[0]);
 
-  //   await pool.query(
-  //     `INSERT INTO academicdetails
-  //     (id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank)
-  //     VALUES ($1, $2, $3, $4, $5, %6, $7, $8, $9, $10, $11);`,
-  //     []
-  //   );
+    const {id, first_name, middle_name, last_name, father_name, address1, address2, zip} = req.body.data[0]
 
-  //   await pool.query(
-  //     `INSERT INTO applicants (id, percentile, prefs, status, on_hold)
-  //     VALUES ($1, $2, $3, $4, $5);`,
-  //     [, , , -1, false]
-  //   );
+    console.log(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
+    await pool.query(
+      `INSERT INTO personaldetails(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+      [id, first_name, middle_name, last_name, father_name, address1, address2, zip]
+    );
+
+    await pool.query(
+      `INSERT INTO academicdetails
+      (id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`,
+      [req.body.data[1].id, parseInt(req.body.data[1].board_10),parseInt(req.body.data[1].percentage_10),parseInt(req.body.data[1].yop_10),parseInt(req.body.data[1].rollno_10),parseInt(req.body.data[1].board_12),parseInt(req.body.data[1].percentage_12),parseInt(req.body.data[1].yop_12),parseInt(req.body.data[1].rollno_12),parseInt(req.body.data[1].application_no),parseInt(req.body.data[1].mains_rank)]
+    );
+
+    /* await pool.query(
+      `INSERT INTO applicants (id, percentile, prefs, status, on_hold)
+      VALUES ($1, $2, $3, $4, $5);`,
+      [req.body.data[0].id,req.body.data[1].mains_rank, , -1, false]
+    );*/
 });
 
 app.get("*", (req, res) => {
