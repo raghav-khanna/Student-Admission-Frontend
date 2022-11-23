@@ -23,11 +23,11 @@ const PersonalDetails = () => {
   const nextPage = "/applicant/first_login/2";
 
   const a = new Personaldetails();
+  let applicantObjectArray = [];
 
   const handleSubmit = () => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
     setProgress(progress + 20);
-    navigate(nextPage);
     a.id = 0; //need to assign
     a.first_name = firstName.current.value;
     a.middle_name = middleName.current.value;
@@ -36,7 +36,9 @@ const PersonalDetails = () => {
     a.address1 = address_1.current.value;
     a.address2 = address_2.current.value;
     a.zip = pin.current.value;
-    console.log(a);
+    // console.log(a);
+    applicantObjectArray.push(a);
+    navigate(nextPage, { state: applicantObjectArray });
   };
 
   return (

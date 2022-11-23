@@ -20,6 +20,8 @@ import UgRegularMode from "./Pages/UgRegularMode";
 import FeePayment from "./Pages/FeePayment";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import AdminLogin from "./Pages/AdminLogin";
+import AdminHome from "./Pages/AdminHome";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
           <Route path="/try_prateek" element={<TryPrateek />} />
           <Route path="/ug" element={<UgAdmissions />} />
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
+          <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>
@@ -54,6 +57,10 @@ function App() {
           <Route path="fee_payment" element={<FeePayment />} />
           <Route path="home" element={<ApplicantHome />} />
           <Route path="allotment" element={<Allotment />} />
+        </Route>
+
+        <Route path="/admin/">
+          <Route path="home" element={<AdminHome />} />
         </Route>
 
         <Route

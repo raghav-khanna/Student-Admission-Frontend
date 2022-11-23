@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useLocation } from "react-router-dom";
 import { useRef } from "react";
 import "./LoginStyles.css";
 
@@ -22,6 +22,7 @@ const AcademicDetails = () => {
   const app_no = useRef(null);
   const rank = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const nextPage = "/applicant/first_login/3";
 
@@ -29,7 +30,6 @@ const AcademicDetails = () => {
 
   const handleSubmit = () => {
     setProgress(progress + 20);
-    navigate(nextPage);
     d.id = 0; //need to assign
     d.board_10 = board10.current.value;
     d.percentage_10 = percentage10.current.value;
@@ -41,7 +41,9 @@ const AcademicDetails = () => {
     d.rollno_12 = rollno12.current.value;
     d.application_no = app_no.current.value;
     d.mains_rank = rank.current.value;
-    console.log(d);
+    location.state.push(d);
+    console.log(location.state);
+    navigate(nextPage, { state: location.state });
   };
 
   return (
