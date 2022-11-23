@@ -3,18 +3,45 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-
 import "./styles.css";
 // import SignUp from "./SignUpPage";
 
+const Login = ({ isAdmin = false }) => {
+  const applicant_id = useRef(null);
+  const applicant_password = useRef(null);
 
+  let applicantCredentials = { id: "", pass: "" };
+  let isLogin = false;
 
+  const fetchData = async (obj) => {
+    fetch(`/loginData`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: obj }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .then((data) => {
+        isLogin = data.flag;
+      });
+  };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(signedUp);
+    // if (applicant_password === applicant_rePassword) {
+    applicantCredentials.id = applicant_id.current.value;
+    applicantCredentials.pass = applicant_password.current.value;
+    // }
 
-const Login = ({isAdmin = false}) => {
+    await fetchData(applicantCredentials);
 
-  const applicant_id = useRef(null)
-  const applicant_password = useRef(null)
+    setSignedUp(true);
+  };
+
   return (
     <div>
       <div className="login-container">
@@ -22,12 +49,12 @@ const Login = ({isAdmin = false}) => {
           {!isAdmin ? "Welcome to the Login Page" : ""}
         </div>
         <div className="login-form">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>{!isAdmin ? "Applicant Id" : "Admin Id"}</Form.Label>
               <Form.Control
                 required
-                ref = {applicant_id}
+                ref={applicant_id}
                 size="lg"
                 type="text"
                 placeholder="Enter your Id"
@@ -37,7 +64,7 @@ const Login = ({isAdmin = false}) => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
-                ref = {applicant_password}
+                ref={applicant_password}
                 size="lg"
                 type="password"
                 placeholder="Password"
