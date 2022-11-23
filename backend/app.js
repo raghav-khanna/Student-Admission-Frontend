@@ -62,13 +62,14 @@ const process = async () => {
 };
 
 app.get("/load", async (req, res) => {
-  /* console.log(req.url)
+  console.log(req.url)
     applicants = []
     branches = []
     await process()
     //res.json({ message: "Hello from server!" });
-    res.json(applicants[0]) */
-  const applicant_info = await pool.query(
+    res.json("Hello")
+    //res.json(applicants[0])
+  /* const applicant_info = await pool.query(
     "SELECT id, status, prefs  FROM applicants WHERE id = ($1);",
     []
   );
@@ -77,10 +78,10 @@ app.get("/load", async (req, res) => {
 
   const branch_alloted = branches_table.rows.find((b) => {
     return b.status === applicant_info.rows[0].status;
-  });
+  }); */
 });
 
-app.post("/signupdata", async(req, res)=>{
+app.post("/signUpData", async(req, res)=>{
     console.log(req.body.data);
     const {email_id, phone_no, password} = req.body.data
     await pool.query("INSERT INTO signup(email_id, phone_no, password) VALUES ($1, $2, $3);",
@@ -96,6 +97,30 @@ app.post("/signupdata", async(req, res)=>{
     const extended_id = "23LNM" + results.rows[0].id
     res.json(extended_id);
 });
+
+app.post("/loginData", async(req, res) => {
+    const decider = {
+      flag: false,
+      data: null
+    }
+    const {id, pass} = req.body.data
+    const {rows} = await pool.query("SELECT password FROM signup WHERE id=($1);",[id.slice(5,id.length)])
+      .then((data)=>{console.log("Password retrived");return data})
+      .catch((err)=>console.log(err))
+
+    if(rows.length != 0){
+      const {password} = rows[0]
+      
+      if(pass === password){
+        decider.flag = true
+        const results = await pool.query("SELECT id, prefs, status FROM applicants WHERE id = ($1);",[id.slice(5,id.length)])
+          .then((data)=>{console.log("Return application status");return data})
+          .catch((err)=>console.log(err)) 
+          decider.data = results.rows
+      }
+    }
+    res.json(decider)
+})
 
 
 app.post("/store", async (req, res) => {
