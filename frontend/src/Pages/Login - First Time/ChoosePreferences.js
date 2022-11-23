@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -10,6 +10,7 @@ import { Preference } from "../../Classes/Preference";
 const ChoosePreferences = () => {
   const [selectedPref, setSelectedPref] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [formState, setFormState] = useState([]);
   const [progress, setProgress] = useOutletContext();
   let pref_array = useRef(["null", "null", "null", "null", "null", "null"]);
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const ChoosePreferences = () => {
 
   const error = "All the Preferences must be filled in order!";
   const nextPage = "/applicant/first_login/success";
+
+  useEffect(() => {
+    setFormState(location.state);
+  }, [location.state]);
 
   // let listArray = [
   //   <option key={1} value={"CSE"}>
@@ -61,16 +66,25 @@ const ChoosePreferences = () => {
 
     p.dsp = pref_array;
     p.waiting = 10000;
-    console.log(location.state);
 
-    location.state.push(p);
+    // const data = new FormData();
+    // data.append("arrayOfObjects", location.state);
 
-    navigate(nextPage, { state: location.state });
+    setFormState((curr) => [...curr, p]);
+
+    fetch(`/store`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: formState }),
+    });
+    navigate(nextPage);
   };
 
   return (
     <div>
-      <Form className="details-form" onSubmit={handleSubmit}>
+      <Form method="post" className="details-form" onSubmit={handleSubmit}>
         <h1>Enter Your Academic Details</h1>
         <br />
         <Row className="mb-3">
