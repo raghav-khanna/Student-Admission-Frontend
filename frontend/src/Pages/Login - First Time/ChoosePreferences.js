@@ -16,28 +16,34 @@ const ChoosePreferences = () => {
   const error = "All the filled Preferences must be distinct!";
   const nextPage = "/applicant/first_login/success";
   let dspArr = [];
-  let prefSet = new Set();
   let flag = false;
 
   const prefs = new Preference();
 
+  const checkError = (arr) => {
+    let prefSet = new Set();
+    arr.forEach((val) => {
+      prefSet.add(val);
+    });
+    if (prefSet.size < arr.length) {
+      setIsError(true);
+    }
+  };
+
   const handleChange = (e) => {
-    setSelectedPref((arr) => [...arr, e.target.value]);
-    setChosenPref([...chosenPref, e.target.value]);
+    checkError([...selectedPref, e.target.value]);
+    if (!isError) {
+      setSelectedPref((arr) => [...arr, e.target.value]);
+      setChosenPref([...chosenPref, e.target.value]);
+    } else {
+      setIsError(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Button Clicked!");
-    setIsError(false);
-
-    selectedPref.forEach((val) => {
-      prefSet.add(val);
-    });
-
-    if (prefSet.size < selectedPref.length) {
-      setIsError(true);
-    } else {
+    if (!isError) {
       chosenPref.forEach((val) => {
         // console.log("Current Val -> " + val);
         dspArr.push({ dsp: val, waiting: 10000 });
