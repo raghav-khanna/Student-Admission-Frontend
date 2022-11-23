@@ -12,6 +12,9 @@ import { Signup } from "../Classes/Signup";
 const SignUp = () => {
   const [signedUp, setSignedUp] = useState(false);
   let applicationId = "LNMABCD001";
+  const [isError, setIsError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [pass, setPass] = useState({ pass: "", rePass: "" });
 
   //Use Ref Hooks
 
@@ -38,18 +41,31 @@ const SignUp = () => {
       });
   };
 
+  const handleChange = (e) => {
+    console.log(pass);
+    console.log(e.target.value);
+    if (pass.pass !== e.target.value) {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(signedUp);
-    // if (applicant_password === applicant_rePassword) {
-    signupObject.email_id = applicant_emailId.current.value;
-    signupObject.phone_no = applicant_phoneNo.current.value;
-    signupObject.password = applicant_password.current.value;
-    // }
 
-    await fetchData(signupObject);
+    if (!isError) {
+      console.log(signedUp);
+      // if (applicant_password === applicant_rePassword) {
+      signupObject.email_id = applicant_emailId.current.value;
+      signupObject.phone_no = applicant_phoneNo.current.value;
+      signupObject.password = applicant_password.current.value;
+      // }
 
-    setSignedUp(true);
+      await fetchData(signupObject);
+
+      setSignedUp(true);
+    }
   };
   return (
     <div>
@@ -90,7 +106,20 @@ const SignUp = () => {
                 size="lg"
                 type="numeric"
                 placeholder="Enter Your 10-Digit Phone Number"
+                onChange={(e) => {
+                  if (
+                    e.target.value > 999999999 &&
+                    e.target.value < 99999999999
+                  ) {
+                    setPhoneError(false);
+                  } else {
+                    setPhoneError(true);
+                  }
+                }}
               />
+              <Form.Text className="text-danger">
+                {phoneError && "Phone Number must be of 10-Digits"}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
@@ -100,6 +129,9 @@ const SignUp = () => {
                 size="lg"
                 type="password"
                 placeholder="Type a Password"
+                onChange={(e) => {
+                  setPass({ ...pass, pass: e.target.value });
+                }}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -110,8 +142,13 @@ const SignUp = () => {
                 size="lg"
                 type="password"
                 placeholder="Re-type the Password"
+                onChange={handleChange}
               />
             </Form.Group>
+            <Form.Text className="text-danger">
+              {isError && "Error! Passwords must match"}
+            </Form.Text>
+            <br />
             <Button className="mb-3" size="lg" variant="danger" type="submit">
               Sign-Up
             </Button>
