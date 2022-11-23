@@ -1,11 +1,13 @@
 import React from "react";
-import UgBullet from "../Components/UG/UgBullet";
-import TempData from "../Components/Nirnay/TempData";
+import ProgOffMtech from "../Components/Nirnay/ProgOffMtech";
 
 const TryNirnay = () => {
   return (
     <div>
-      <UgBullet dataArray={TempData} />
+      <h1>
+        Hello
+      </h1>
+      <ProgOffMtech />
     </div>
   );
 };
