@@ -1,4 +1,4 @@
-const arr1data = [
+const progoff = [
   ["Programmes", "Seats"],
   ["B.Tech. in Computer Science and Engineering (CSE)", "240"],
   [
@@ -30,3 +30,5 @@ const arr1data = [
   ["B.Tech. - M.Tech. (5 Year Integrated Dual Degree) in CSE", "10"],
   ["B.Tech. - M.Tech. (5 Year Integrated Dual Degree) in ECE", "10"],
 ];
+
+export default progoff;

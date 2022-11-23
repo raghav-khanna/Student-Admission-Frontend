@@ -12,3 +12,16 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+
+.checkers {
+    background-color: red;
+    color: white;
+}
+
+.table-elemento {
+    padding: 8px;
+}
+
+.small-para {
+    margin-bottom: 1rem;
+}
