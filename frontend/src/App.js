@@ -19,7 +19,7 @@ import UgAdmissions from "./Pages/UgAdmissions";
 import UgRegularMode from "./Pages/UgRegularMode";
 import FeePayment from "./Pages/FeePayment";
 import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import SignUp from "./Pages/SignUpPage";
 import AdminLogin from "./Pages/AdminLogin";
 import AdminHome from "./Pages/AdminHome";
 
@@ -42,7 +42,7 @@ function App() {
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
           <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<SignUp />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
