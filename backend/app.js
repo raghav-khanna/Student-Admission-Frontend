@@ -20,6 +20,35 @@ app.use(express.json());
 //     //app.use(express.static(path.resolve(__dirname, './frontend/build')));
 // }
 
+const brute_force = (id, mains_rank, prefs)=>{
+    let text
+    let values = [id, mains_rank]
+    if(prefs.length >= 1){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[0].dsp]
+    }
+    if(prefs.length >= 2){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[1].dsp]
+    }
+    if(prefs.length >= 3){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[2].dsp]
+    }if(prefs.length >= 4){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[3].dsp]
+    }if(prefs.length >= 5){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000),($7,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[4].dsp]
+    }
+    if(prefs.length >= 6){
+        text = "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000),($7,10000),($8,10000)]:: pref[], -1, false)"
+        values = [...values, prefs[5].dsp]
+    }
+    return {text, values}
+}
+
+
 const process = async () => {
   await pool.query("TRUNCATE students;");
   await retrieveData(applicants, branches);
@@ -53,40 +82,30 @@ app.get("/load", async (req, res) => {
 
 app.post("/store", async (req, res) => {
     try {
-        console.log("Data is -> \n");
-        console.log(req.body.data);
-        console.log(req.body.data.a);
-        console.log(req.body.data.b);
-    
         const {id, first_name, middle_name, last_name, father_name, address1, address2, zip} = req.body.data.a
         const {board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank } = req.body.data.d
-        const {dsp, waiting} = req.body.data.p
-    
-        console.log(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
+        const prefs = req.body.data.prefs.dsp;
+        
         await pool.query(
         `INSERT INTO personaldetails(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
         [id, first_name, middle_name, last_name, father_name, address1, address2, zip]
-        );
+        ).then(()=>console.log("Personal details have been added"))
     
         await pool.query(
         `INSERT INTO academicdetails
         (id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`,
         [id,board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank]
-        );
+        ).then(()=>console.log("Academic details have been added"))
 
-        /* await pool.query(
-          `INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY $3:: pref[], $4, $5)`,
-          [id, mains_rank, prefs,-1, false]
-        ); */
-        
+        const {text, values} = brute_force(id, mains_rank, prefs)
+        await pool.query(text,values).then(()=>console.log("Preferences have been added"))
+
     } catch (error) {
         console.log(error)
     }
 
-
-    //INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( 1, 100, ARRAY [('CSE', 100), ('CCE', 100), ('ECE', 100)]:: pref[], -1, false) 
 });
 
 app.get("*", (req, res) => {
