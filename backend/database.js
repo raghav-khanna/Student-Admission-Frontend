@@ -3,7 +3,7 @@
 import { details } from "./sql_files/Souravdb.js"
 import pkg from 'pg'
 const {Pool} = pkg
-/* import dotenv from 'dotenv'
+import dotenv from 'dotenv'
 dotenv.config()
 
 const proConfig = {
@@ -18,8 +18,8 @@ const devConfig = {
     database : process.env.PG_DATABASE
 }
 
-export const pool = new Pool(process.env.NODE_ENV === 'production'? proConfig : devConfig) */
-
+export const pool = new Pool(process.env.NODE_ENV === 'production'? proConfig : devConfig)
+/* 
 export const pool = new Pool(
     {
         user: details.user,
@@ -29,7 +29,7 @@ export const pool = new Pool(
         database : details.database
     }
 )
-
+ */
 
 //module.exports = pool
 
