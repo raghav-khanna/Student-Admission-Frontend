@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -10,40 +9,49 @@ import { Signup } from "../Classes/Signup";
 
 //import SignUpComponent from "../Components/Raghav/SignUpComponent";
 
- 
-  const SignUp = () => {
-    
-    const [signedUp, setSignedUp] = useState(false);
-    let applicationId = "LNMABCD001";
+const SignUp = () => {
+  const [signedUp, setSignedUp] = useState(false);
+  let applicationId = "LNMABCD001";
 
-    //Use Ref Hooks
+  //Use Ref Hooks
 
-    const applicant_emailId = useRef(null)
-    const applicant_phoneNo = useRef(null)
-    const applicant_password = useRef(null)
-    const applicant_rePassword = useRef(null)
+  const applicant_emailId = useRef(null);
+  const applicant_phoneNo = useRef(null);
+  const applicant_password = useRef(null);
+  const applicant_rePassword = useRef(null);
 
-    //
+  const signupObject = new Signup();
 
+  const fetchData = async (obj) => {
+    fetch(`/signUpData`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: obj }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .then((data) => {
+        applicationId = data.id;
+      });
+  };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(signedUp);
+    // if (applicant_password === applicant_rePassword) {
+    signupObject.email_id = applicant_emailId.current.value;
+    signupObject.phone_no = applicant_phoneNo.current.value;
+    signupObject.password = applicant_password.current.value;
+    // }
 
-    const s = new Signup()
+    await fetchData(signupObject);
 
-
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      setSignedUp(true);
-      console.log(signedUp);
-      if(applicant_password == applicant_rePassword){
-        s.email_id = applicant_emailId.current.value
-        s.phone_no = applicant_phoneNo.cuurent.value
-        s.password = applicant_password.current.value
-      }
-      // else{ask the user to re-enter the password}
-  
-    };
-    return (
+    setSignedUp(true);
+  };
+  return (
     <div>
       <div className="signup-container">
         <div className="signup-title">Welcome to the Sign-Up Page</div>
@@ -68,7 +76,7 @@ import { Signup } from "../Classes/Signup";
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 required
-                ref ={applicant_emailId}
+                ref={applicant_emailId}
                 size="lg"
                 type="email"
                 placeholder="Enter Your Email Address"
@@ -78,7 +86,7 @@ import { Signup } from "../Classes/Signup";
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
                 required
-                ref = {applicant_phoneNo}
+                ref={applicant_phoneNo}
                 size="lg"
                 type="numeric"
                 placeholder="Enter Your 10-Digit Phone Number"
@@ -88,7 +96,7 @@ import { Signup } from "../Classes/Signup";
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
-                ref = {applicant_password}
+                ref={applicant_password}
                 size="lg"
                 type="password"
                 placeholder="Type a Password"
@@ -98,7 +106,7 @@ import { Signup } from "../Classes/Signup";
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 required
-                ref = {applicant_rePassword}
+                ref={applicant_rePassword}
                 size="lg"
                 type="password"
                 placeholder="Re-type the Password"
