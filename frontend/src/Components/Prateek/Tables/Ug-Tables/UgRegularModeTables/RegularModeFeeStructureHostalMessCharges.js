@@ -1,4 +1,5 @@
-const arr1data = [
+const hostel = [
+  [null, null]
   ["Hostel Charges", "25,000"],
   ["Electricity Charges", "6,600"],
   ["Internet Charges", "500"],
@@ -8,3 +9,5 @@ const arr1data = [
     "17,000",
   ],
 ];
+
+export { hostel };
