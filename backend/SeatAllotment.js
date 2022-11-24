@@ -34,10 +34,10 @@ const Allot_Seat = (applicant, branches) => {
     }
 }
 
-export const Round = (applicants, branches) => {
+export const Round = async (applicants, branches, result) => {
     //Need to sort applicants by percentile before calling this function
-    applicants.map((applicant)=>Allot_Seat(applicant,branches))
-    applicants.map((applicant)=> {
+    await applicants.map((applicant)=>Allot_Seat(applicant,branches))
+    await applicants.map(async (applicant)=> {
         let alloted_branch_id
         if(!applicant.status){
             if(!applicant.prefs.length){
@@ -51,6 +51,10 @@ export const Round = (applicants, branches) => {
             let alloted_branch = branches.find((b) => {return b.status === applicant.status})
             alloted_branch_id = alloted_branch!=null?alloted_branch.id:'nothing'
         }
+
+        await pool.query(`UPDATE applicants SET status : $(1) WHERE id = $(2);`,
+        [applicant.status,applicant.id])
+        result = [...result, `${applicant.id} has been alloted ${alloted_branch_id}\n`]
         console.log(`${applicant.id} has been alloted ${alloted_branch_id}\n`)
     })
 }
