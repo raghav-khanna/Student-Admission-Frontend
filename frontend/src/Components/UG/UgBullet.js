@@ -6,7 +6,11 @@ import UgBulletCard from "./UgBulletCard";
 const UgBullet = (props) => {
 
     const card = [];
-    if (props.dataArray[0].hasOwnProperty('y')) {
+    console.log()
+    if (props.dataArray == null) {
+        card.push(<></>);
+    }
+    else if (props.dataArray[0].hasOwnProperty('y')) {
         props.dataArray.map((val, key) => {
             card.push(<UgBulletCard header={val.h} list={val.x} sublist={val.x1} table={val.y} l1={val.z} l2={val.x1} />)
         });

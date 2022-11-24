@@ -22,6 +22,7 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUpPage";
 import AdminLogin from "./Pages/AdminLogin";
 import AdminHome from "./Pages/AdminHome";
+import MTech from "./Pages/MTech";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/mtech" element={<MTech />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
