@@ -62,7 +62,7 @@ const Login = ({ isAdmin = false }) => {
           state: {
             id: authData.id,
             data: authData.data,
-            pref_details: authData.pref_details,
+            pref_details: authData.pref_details.rows,
           },
         });
       }
