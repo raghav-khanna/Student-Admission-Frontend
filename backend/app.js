@@ -12,6 +12,7 @@ import { pool } from "./database.js";
 const PORT = 3001;
 let applicants = [];
 let branches = [];
+let round_no = 1
 let total_rounds = 2;
 
 const app = express();
@@ -61,6 +62,7 @@ const process = async () => {
   await retrieveData(applicants, branches);
 
   for (let round_no = 1; round_no < total_rounds + 1; ++round_no) {
+  // await branches.map((branch)=> branch.wl_no = 1) Remember to do this
     console.log(`ROUND ${round_no}\n\n`);
     Round(applicants, branches);
     PostAllotment(applicants, branches, round_no, total_rounds);
@@ -113,83 +115,48 @@ app.post("/signUpData", async (req, res) => {
 });
 
 app.post("/loginData", async (req, res) => {
-  const decider = {
-    flag: false,
-    id: null,
-    data: null,
-  };
-  const { id, pass } = req.body.data;
-  const { rows } = await pool
-    .query("SELECT password FROM signup WHERE id=($1);", [
-      id.slice(5, id.length),
-    ])
-    .then((data) => {
-      console.log("Password retrived");
-      return data;
-    })
-    .catch((err) => console.log(err));
-
-  if (rows.length != 0) {
-    const { password } = rows[0];
-    decider.id = id.slice(5, id.length);
-
-    if (pass === password) {
-      decider.flag = true;
-      const results = await pool
-        .query("SELECT prefs, status FROM applicants WHERE id = ($1);", [
-          id.slice(5, id.length),
-        ])
-        .then((data) => {
-          console.log("Return application status");
-          return data;
-        })
-        .catch((err) => console.log(err));
-      decider.data = results.rows;
+    const decider = {
+      flag: false,
+      id: null,
+      data: null,
+      pref_details: null
     }
-  }
-  res.json(decider);
-});
+    const { id, pass } = req.body.data
+
+    if(id.slice(0,4)==='23LNM'){
+      const {rows} = await pool.query("SELECT password FROM signup WHERE id=($1);",[id.slice(5,id.length)])
+        .then((data)=>{console.log("Password retrived");return data})
+        .catch((err)=>console.log(err))
+
+      if(rows.length != 0){
+        const {password} = rows[0]
+        decider.id = id.slice(5,id.length);
+        if(pass === password){
+          decider.flag = true
+          const results = await pool.query("SELECT status FROM applicants WHERE id = ($1);",[id.slice(5,id.length)])
+            .then((data)=>{console.log("Return application status");return data})
+            .catch((err)=>console.log(err)) 
+
+          decider.pref_details = await pool.query("SELECT UNNEST(prefs) FROM applicants WHERE id = ($1);",[id.slice(5,id.length)])
+          decider.data = results.rows
+        }
+      }
+    }
+    res.json(decider)
+})
+
 
 app.post("/store", async (req, res) => {
   try {
-    const {
-      id,
-      first_name,
-      middle_name,
-      last_name,
-      father_name,
-      address1,
-      address2,
-      zip,
-    } = req.body.data.a;
-    const {
-      board_10,
-      percentage_10,
-      yop_10,
-      rollno_10,
-      board_12,
-      percentage_12,
-      yop_12,
-      rollno_12,
-      application_no,
-      mains_rank,
-    } = req.body.data.d;
+    const {id, first_name, middle_name, last_name, father_name, address1, address2, zip,} = req.body.data.a;
+    const {board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank,} = req.body.data.d;
     const prefs = req.body.data.prefs.dsp;
 
     await pool
       .query(
         `INSERT INTO personaldetails(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
-        [
-          id,
-          first_name,
-          middle_name,
-          last_name,
-          father_name,
-          address1,
-          address2,
-          zip,
-        ]
+        [ id, first_name, middle_name, last_name, father_name, address1, address2, zip,]
       )
       .then(() => console.log("Personal details have been added"));
 
@@ -198,19 +165,7 @@ app.post("/store", async (req, res) => {
         `INSERT INTO academicdetails
         (id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`,
-        [
-          id,
-          board_10,
-          percentage_10,
-          yop_10,
-          rollno_10,
-          board_12,
-          percentage_12,
-          yop_12,
-          rollno_12,
-          application_no,
-          mains_rank,
-        ]
+        [id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank,]
       )
       .then(() => console.log("Academic details have been added"));
 
@@ -222,6 +177,17 @@ app.post("/store", async (req, res) => {
     console.log(error);
   }
 });
+
+app.post('/roundsEval', async (req, res) => {
+  retrieveData(applicants, branches)
+  const {id, choice} = req.body.data
+
+  let applicant = applicants.find((a)=> {return a.id === id.slice(5,id.length)})
+
+  PostAllotment(applicant, branches, round_no, total_rounds, choice)
+
+})
+
 
 app.get("*", (req, res) => {
   res.send("<h1>Error!</h1><br/><p>Change URL</p>");

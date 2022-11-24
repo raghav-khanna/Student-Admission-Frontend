@@ -245,7 +245,7 @@ const AcademicDetails = () => {
         <Row>
           <Form.Text className="text-danger">
             {isError &&
-              "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023. Roll No. must be of 7 digits"}
+              "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023. Roll Nos must be of 7 digits<br/>Application No. should be 12 digits"}
           </Form.Text>
         </Row>
 
