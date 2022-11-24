@@ -6,6 +6,7 @@ import "./LoginStyles.css";
 
 const FirstTimeLogin = () => {
   const [progress, setProgress] = useState(20);
+  const [formData, setFormData] = useState({});
 
   return (
     <div>
@@ -18,7 +19,12 @@ const FirstTimeLogin = () => {
           variant="danger"
           visuallyHidden
         />
-        <Outlet context={[progress, setProgress]} />
+        <Outlet
+          context={[
+            [progress, setProgress],
+            [formData, setFormData],
+          ]}
+        />
       </div>
     </div>
   );

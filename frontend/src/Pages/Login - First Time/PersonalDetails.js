@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -10,7 +10,10 @@ import "./LoginStyles.css";
 import { Personaldetails } from "../../Classes/Personaldetails";
 
 const PersonalDetails = () => {
-  const [progress, setProgress] = useOutletContext();
+  const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
+  const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
+  //Use Ref Hooks
   const firstName = useRef(null);
   const middleName = useRef(null);
   const lastName = useRef(null);
@@ -18,27 +21,59 @@ const PersonalDetails = () => {
   const address_1 = useRef(null);
   const address_2 = useRef(null);
   const pin = useRef(null);
-  const navigate = useNavigate();
+  //
 
+  const onlyTextPattern = /^[A-Za-z]+$/;
+  const zipCodePattern = /[0-9]{6}/;
   const nextPage = "/applicant/first_login/2";
-
   const a = new Personaldetails();
   let applicantObjectArray = [];
 
-  const handleSubmit = () => {
+  const handleError = (e) => {
+    console.log(onlyTextPattern.test(e.target.value));
+    if (
+      onlyTextPattern.test(e.target.value) === true
+      // zipCodePattern.test(e.target.value) === true
+    ) {
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+  };
+
+  const handleZipError = (e) => {
+    console.log(zipCodePattern.test(e.target.value));
+    if (
+      // onlyTextPattern.test(e.target.value) === true
+      zipCodePattern.test(e.target.value) === true
+    ) {
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+  };
+
+  const handleSubmit = (e) => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
-    setProgress(progress + 20);
-    a.id = 0; //need to assign
-    a.first_name = firstName.current.value;
-    a.middle_name = middleName.current.value;
-    a.last_name = lastName.current.value;
-    a.father_name = fatherName.current.value;
-    a.address1 = address_1.current.value;
-    a.address2 = address_2.current.value;
-    a.zip = pin.current.value;
-    // console.log(a);
-    applicantObjectArray.push(a);
-    navigate(nextPage, { state: applicantObjectArray });
+    e.preventDefault();
+    if (!isError) {
+      setProgress(progress + 20);
+
+      //Use Ref Hooks
+      a.id = 1000; //need to assign
+      a.first_name = firstName.current.value;
+      a.middle_name = middleName.current.value;
+      a.last_name = lastName.current.value;
+      a.father_name = fatherName.current.value;
+      a.address1 = address_1.current.value;
+      a.address2 = address_2.current.value;
+      a.zip = pin.current.value;
+      //
+
+      setFormData({ ...formData, a });
+
+      navigate(nextPage);
+    }
   };
 
   return (
@@ -48,13 +83,14 @@ const PersonalDetails = () => {
         <br />
         <Row className="mb-3">
           <Form.Group as={Col}>
-            <Form.Label>First Name</Form.Label>
+            <Form.Label>First Name*</Form.Label>
             <Form.Control
               required
               ref={firstName}
               size="lg"
               type="text"
               placeholder="Enter Your First Name"
+              onChange={(e) => handleError(e)}
             />
           </Form.Group>
 
@@ -65,6 +101,7 @@ const PersonalDetails = () => {
               size="lg"
               type="text"
               placeholder="Enter Your Middle Name"
+              onChange={(e) => handleError(e)}
             />
           </Form.Group>
 
@@ -74,26 +111,28 @@ const PersonalDetails = () => {
               ref={lastName}
               size="lg"
               type="text"
-              placeholder="Enter Your Middle Name"
+              placeholder="Enter Your Last Name"
+              onChange={(e) => handleError(e)}
             />
           </Form.Group>
         </Row>
 
         <Row className="mb-3">
           <Form.Group className="mb-3">
-            <Form.Label>Father Full Name</Form.Label>
+            <Form.Label>Father Full Name*</Form.Label>
             <Form.Control
               required
               ref={fatherName}
               size="lg"
               placeholder="Please Enter your Father's Full Name"
+              onChange={(e) => handleError(e)}
             />
           </Form.Group>
         </Row>
 
         <Row className="mb-3">
           <Form.Group className="mb-3">
-            <Form.Label>Address Line 1</Form.Label>
+            <Form.Label>Address Line 1*</Form.Label>
             <Form.Control
               required
               ref={address_1}
@@ -110,14 +149,19 @@ const PersonalDetails = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Zip</Form.Label>
+            <Form.Label>Zip*</Form.Label>
             <Form.Control
               required
               ref={pin}
               size="lg"
               placeholder="Please Enter your PINCODE"
+              onChange={(e) => handleZipError(e)}
             />
           </Form.Group>
+          <Form.Text className="text-danger">
+            {isError &&
+              "Error! Note - Name must not contain characters other than alphabets and Zip Code must be of 6-digits"}
+          </Form.Text>
         </Row>
         <Button size="lg" variant="danger" type="submit">
           Submit

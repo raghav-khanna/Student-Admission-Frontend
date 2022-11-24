@@ -19,7 +19,7 @@ import UgAdmissions from "./Pages/UgAdmissions";
 import UgRegularMode from "./Pages/UgRegularMode";
 import FeePayment from "./Pages/FeePayment";
 import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import SignUp from "./Pages/SignUpPage";
 import AdminLogin from "./Pages/AdminLogin";
 import AdminHome from "./Pages/AdminHome";
 import MTech from "./Pages/MTech";
