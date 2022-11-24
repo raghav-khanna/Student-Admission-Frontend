@@ -65,30 +65,37 @@ const process = async () => {
   // await branches.map((branch)=> branch.wl_no = 1) Remember to do this
     console.log(`ROUND ${round_no}\n\n`);
     Round(applicants, branches);
-    PostAllotment(applicants, branches, round_no, total_rounds);
   }
+  
+  /* if(round_no == total_rounds){
+    frozen_applicants.forEach((a)=>{
+        pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
+    })
+  } */
+
+
   //applicants.map((applicant)=> console.log(applicant.id, applicant.prefs))
 };
 
-// app.get("/load", async (req, res) => {
-//   console.log(req.url);
-//   applicants = [];
-//   branches = [];
-//   await process();
-//   //res.json({ message: "Hello from server!" });
-//   res.json("Hello");
-//   //res.json(applicants[0])
-//   /* const applicant_info = await pool.query(
-//     "SELECT id, status, prefs  FROM applicants WHERE id = ($1);",
-//     []
-//   );
+app.get("/load", async (req, res) => {
+  console.log(req.url);
+  applicants = [];
+  branches = [];
+  //await process();
+  //res.json({ message: "Hello from server!" });
+  res.json("Hello");
+  //res.json(applicants[0])
+  /* const applicant_info = await pool.query(
+    "SELECT id, status, prefs  FROM applicants WHERE id = ($1);",
+    []
+  );
 
-//   const branches_table = await pool.query("SELECT * FROM branches;");
+  const branches_table = await pool.query("SELECT * FROM branches;");
 
-//   const branch_alloted = branches_table.rows.find((b) => {
-//     return b.status === applicant_info.rows[0].status;
-//   }); */
-// });
+  const branch_alloted = branches_table.rows.find((b) => {
+    return b.status === applicant_info.rows[0].status;
+  }); */
+});
 
 app.post("/signUpData", async (req, res) => {
   console.log(req.body.data);
@@ -123,7 +130,7 @@ app.post("/loginData", async (req, res) => {
     }
     const { id, pass } = req.body.data
 
-    if(id.slice(0,4)==='23LNM'){
+    if(id.slice(0,5)==='23LNM'){
       const {rows} = await pool.query("SELECT password FROM signup WHERE id=($1);",[id.slice(5,id.length)])
         .then((data)=>{console.log("Password retrived");return data})
         .catch((err)=>console.log(err))
@@ -188,6 +195,19 @@ app.post('/roundsEval', async (req, res) => {
 
 })
 
+app.post('/admininstrator', async (req, res) => {
+    await retrieveData(applicants, branches)
+    branches.map((branch)=> branch.wl_no = 1) 
+    let results = []
+    Round(applicants, branches, results)
+    /* round_no ++;
+    if(round_no == total_rounds){
+      frozen_applicants.forEach((a)=>{
+          pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
+      })
+    } */
+    res.json(results)
+})
 
 app.get("*", (req, res) => {
   res.send("<h1>Error!</h1><br/><p>Change URL</p>");
