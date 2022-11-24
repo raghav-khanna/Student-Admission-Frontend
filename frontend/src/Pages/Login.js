@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import { useRef } from "react";
 import "./styles.css";
 // import SignUp from "./SignUpPage";
@@ -13,6 +18,8 @@ const Login = ({ isAdmin = false }) => {
   let applicantCredentials = { id: "", pass: "" };
   const [authData, setAuthData] = useState();
   const navigate = useNavigate();
+
+  // const [formData, setFormData] = useOutletContext();
 
   const oldLogin = "/applicant/home";
   const newLogin = "/applicant/first_login";
@@ -48,9 +55,10 @@ const Login = ({ isAdmin = false }) => {
     } else {
       setIsError(false);
       if (authData.data.length === 0) {
-        navigate(newLogin);
+        navigate(newLogin, { state: { id: authData.id } });
       } else {
-        navigate(oldLogin);
+        console.log(authData.data);
+        navigate(oldLogin, { state: { id: authData.id } });
       }
     }
   };

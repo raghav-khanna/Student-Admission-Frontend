@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useRef } from "react";
 import "./LoginStyles.css";
 
@@ -13,6 +13,7 @@ const PersonalDetails = () => {
   const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
+  const location = useLocation();
   //Use Ref Hooks
   const firstName = useRef(null);
   const middleName = useRef(null);
@@ -60,7 +61,7 @@ const PersonalDetails = () => {
       setProgress(progress + 20);
 
       //Use Ref Hooks
-      a.id = 1000; //need to assign
+      a.id = location.state.id; //route.params.state; //need to assign
       a.first_name = firstName.current.value;
       a.middle_name = middleName.current.value;
       a.last_name = lastName.current.value;
@@ -71,7 +72,6 @@ const PersonalDetails = () => {
       //
 
       setFormData({ ...formData, a });
-
       navigate(nextPage);
     }
   };

@@ -11,11 +11,11 @@ import { useState, useEffect } from "react";
 function Home() {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("/load")
-      .then((res) => res.json())
-      .then((data) => setData(data.id));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/load")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.id));
+  // }, []);
 
   return (
     <>
