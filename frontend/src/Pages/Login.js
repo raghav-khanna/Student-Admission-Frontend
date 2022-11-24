@@ -58,7 +58,13 @@ const Login = ({ isAdmin = false }) => {
         navigate(newLogin, { state: { id: authData.id } });
       } else {
         console.log("Auth Data at Login Page -> " + authData.data);
-        navigate(oldLogin, { state: { id: authData.id, data: authData.data } });
+        navigate(oldLogin, {
+          state: {
+            id: authData.id,
+            data: authData.data,
+            pref_details: authData.pref_details,
+          },
+        });
       }
     }
   };
