@@ -40,7 +40,7 @@ const Hold = (applicant, branches) => {
 }
 
 
-let freezed_applicants = []
+let frozen_applicants = []
 const Freeze = async (applicant, branches,round_no) => {
     let branch_alloted
     if(!applicant.status){
@@ -51,79 +51,14 @@ const Freeze = async (applicant, branches,round_no) => {
     }
     let frozen = applicant.prefs.find((p) => {return p.dsp == branch_alloted.id})
 
-    freezed_applicants.push([applicant.id,branch_alloted.status, round_no])
+    frozen_applicants.push([applicant.id,branch_alloted.status, round_no])
     applicant.prefs = [frozen]
     applicant.status = 0
     console.log(`${applicant.id} has frozen his seat\n`)
 }
 
-const DecideStatus = (applicant, branches, round_no, total_rounds) => {
-    let choice
-    if(round_no == 1){
-        if(applicant.id == '1'){
-            choice = 3
-        }
-        else if(applicant.id == '2'){
-            choice = 0
-        }
-        else if(applicant.id == '3'){
-            choice = 3
-        }
-        else if(applicant.id == '4'){
-            choice = 2
-        }
-        else if(applicant.id == '5'){
-            choice = 3
-        }
-        else if(applicant.id == '6'){
-            choice = 0
-        }
-        else if(applicant.id == '7'){
-            choice = 1
-        }
-        else if(applicant.id == '8'){
-            choice = 0
-        }
-        else if(applicant.id == '9'){
-            choice = 10
-        }
-        else if(applicant.id == '10'){
-            choice = 10
-        }
-    }
-    else{
-        if(applicant.id == '1'){
-            choice = 100
-        }
-        else if(applicant.id == '2'){
-            choice = 100
-        }
-        else if(applicant.id == '3'){
-            choice = 100
-        }
-        else if(applicant.id == '4'){
-            choice = 3 //hold
-        }
-        else if(applicant.id == '5'){
-            choice = 100
-        }
-        else if(applicant.id == '6'){
-            choice = 100
-        }
-        else if(applicant.id == '7'){
-            choice = 0 //float
-        }
-        else if(applicant.id == '8'){
-            choice = 100
-        }
-        else if(applicant.id == '9'){
-            choice = 3 //float
-        }
-        else if(applicant.id == '10'){
-            choice = 10 //thrown 
-        }
-    }
-
+const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
+    
     if(applicant.status == -1){
         //nothing
         if(round_no == total_rounds){console.log(`${applicant.id} is thrown out of college\n`)}
@@ -147,14 +82,28 @@ const DecideStatus = (applicant, branches, round_no, total_rounds) => {
             else{console.log(`${applicant.id} continues to stay in further rounds\n`)}
         }
     }
+    return applicant
 }
 
-export const PostAllotment = async(applicants,branches, round_no,total_rounds) => {
-    await applicants.map((applicant)=>DecideStatus(applicant,branches, round_no,total_rounds))
-    await branches.map((branch)=> branch.wl_no = 1)
+export const PostAllotment = async(applicant,branches, round_no,total_rounds, choice) => {
+    let updated_applicant = await DecideStatus(applicant,branches, round_no, total_rounds, choice)
+    let temp = []
+
+    applicant.prefs.forEach((pref)=>{
+        const pair = "('"+ pref.dsp+"',"+pref.waiting+")"
+        temp.push(pair)
+    })
+    await pool.query(`UPDATE applicants SET prefs : ARRAY $(1):: pref[], status : $(2), on_hold : $(3) WHERE id = $(4);`)    
+
+    //INSERT INTO applicants(prefs) VALUES (ARRAY [('CSE', 100), ('CCE', 100), ('ECE', 100)]:: pref[])
+    //INSERT INTO applicants(prefs) VALUES (ARRAY [['CSE', 100], ('CCE', 100), ('ECE', 100)]:: pref[])
+
+    //INSERT INTO applicants(prefs) VALUES (ARRAY $(1):: pref[]) 
+
+    // await branches.map((branch)=> branch.wl_no = 1) Remember to do this
     
     if(round_no == total_rounds){
-        freezed_applicants.forEach((a)=>{
+        frozen_applicants.forEach((a)=>{
             pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
         })
     }
