@@ -1,9 +1,12 @@
 import { React, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./AllotmentStyle.css";
 
 const Allotment = () => {
   let alloted = true;
+  const navigate = useNavigate();
+  const home = "/";
   const [disabledList, setDisabledList] = useState({});
   let isDisabled = false;
 
@@ -41,6 +44,9 @@ const Allotment = () => {
           Drop
         </Button>
       </div>
+      <Button className="m-3" size="lg" variant="danger" onClick={() => {
+        navigate(home);
+      }}>Log-out</Button>
     </div>
   );
 };

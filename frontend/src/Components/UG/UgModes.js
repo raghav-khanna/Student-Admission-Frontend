@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const UgModes = () => {
   const regularMode = "/ug_regular_mode";
+  const loginPage = "/login";
   const navigate = useNavigate();
 
   const handleClick = (page) => {
@@ -20,8 +21,16 @@ const UgModes = () => {
         <figure>
           <img className="banner-image" src={bannerImage} alt="Banner Image" />
         </figure>
-        <Button size="lg" variant="danger" className="btn">
-          ADMISSIONS PORTAL
+
+      </div>
+      <div className="apply-button">
+        <Button
+          className="m-5"
+          onClick={() => handleClick(loginPage)}
+          variant="danger"
+          size="lg"
+        >
+          Apply Now - 2022
         </Button>
       </div>
       <div className="cards">

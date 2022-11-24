@@ -1,6 +1,5 @@
 //const details = require('./sql_files/Souravdb')
 //const Pool = require("pg").Pool;
-import { details } from "./sql_files/Souravdb.js"
 import pkg from 'pg'
 const {Pool} = pkg
 import dotenv from 'dotenv'

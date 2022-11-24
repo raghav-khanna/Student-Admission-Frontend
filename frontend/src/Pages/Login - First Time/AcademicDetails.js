@@ -138,7 +138,7 @@ const AcademicDetails = () => {
               placeholder="Enter your 10th class roll number"
               onChange={(e) => {
                 onlyDigit.test(e.target.value) === true &&
-                e.target.value > 10000
+                e.target.value > 999999
                   ? setIsError(false)
                   : setIsError(true);
               }}
@@ -198,7 +198,7 @@ const AcademicDetails = () => {
               placeholder="Enter your 12th class roll number"
               onChange={(e) => {
                 onlyDigit.test(e.target.value) === true &&
-                e.target.value > 10000
+                e.target.value > 999999
                   ? setIsError(false)
                   : setIsError(true);
               }}
@@ -245,7 +245,7 @@ const AcademicDetails = () => {
         <Row>
           <Form.Text className="text-danger">
             {isError &&
-              "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023. Roll No. must be of 5 digits"}
+              "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023. Roll No. must be of 7 digits"}
           </Form.Text>
         </Row>
 
