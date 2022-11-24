@@ -10,6 +10,7 @@ const BannerCards = () => {
   const ug = "/ug";
   const msc = "/msc";
   const mtech = "/mtech";
+  const phd = "/phd";
 
   const navigate = useNavigate();
 
@@ -69,6 +70,7 @@ const BannerCards = () => {
         <div
           className="card-item"
           style={{ backgroundColor: "rgb(190, 33, 33)" }}
+          onClick={() => handleClick(phd)}
         >
           <figure>
             <FaGraduationCap />

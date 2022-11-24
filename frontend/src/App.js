@@ -24,6 +24,7 @@ import AdminLogin from "./Pages/AdminLogin";
 import AdminHome from "./Pages/AdminHome";
 import MTech from "./Pages/MTech";
 import Msc from "./Pages/Msc";
+import Phd from "./Pages/Phd";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
           <Route path="/mtech" element={<MTech />} />
           <Route path="/msc" element={<Msc />} />
+          <Route path="/phd" element={<Phd />} />
           <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
