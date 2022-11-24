@@ -11,11 +11,10 @@ import { Signup } from "../Classes/Signup";
 
 const SignUp = () => {
   const [signedUp, setSignedUp] = useState(false);
-  let applicationId = "LNMABCD001";
   const [isError, setIsError] = useState(false);
+  const [applicationId, setApplicationId] = useState(null);
   const [phoneError, setPhoneError] = useState(false);
   const [pass, setPass] = useState({ pass: "", rePass: "" });
-
   //Use Ref Hooks
 
   const applicant_emailId = useRef(null);
@@ -26,7 +25,7 @@ const SignUp = () => {
   const signupObject = new Signup();
 
   const fetchData = async (obj) => {
-    fetch(`/signUpData`, {
+    await fetch(`/signUpData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,10 +33,10 @@ const SignUp = () => {
       body: JSON.stringify({ data: obj }),
     })
       .then((res) => {
-        console.log(res);
+        return res.json();
       })
       .then((data) => {
-        applicationId = data.id;
+        setApplicationId(data);
       });
   };
 

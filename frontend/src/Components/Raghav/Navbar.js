@@ -36,10 +36,12 @@ const Navbar = () => {
               <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <NavLink to="/faq">FAQ</NavLink>
+              <a href="https://admissions.lnmiit.ac.in/ug/FAQs.html">FAQ</a>
             </li>
             <li>
-              <NavLink to="/placements">Placements</NavLink>
+              <a href="https://admissions.lnmiit.ac.in/ug/Placement_Interships.html">
+                Placements
+              </a>
             </li>
           </ul>
         </div>
