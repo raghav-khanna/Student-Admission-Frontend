@@ -17,7 +17,7 @@ const getstring = (pref) => {
 export const retrieveData = async(applicants,branches) => {
     
     //Applicants
-    const details = await pool.query("SELECT id, percentile, status, on_hold FROM applicants ORDER BY percentile DESC;")
+    const details = await pool.query("SELECT id, percentile, status, on_hold FROM applicants ORDER BY percentile;")
     for(let a = 0; a < details.rowCount; ++a){
         const pref_details = await pool.query("SELECT UNNEST(prefs) FROM applicants WHERE id = ($1);",[a+1])
         let pref_array = []
