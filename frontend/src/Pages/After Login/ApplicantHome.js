@@ -1,16 +1,29 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ApplicantHome = () => {
+  const allotement = "/applicant/allotment";
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location.state.data[0].prefs);
+
+  const handleClick = () => {
+    navigate(allotement, { state: location.state });
+  };
+
   return (
     <div>
       <h1>Welcome to the Home Page of the Applicant!</h1>
-      <Link to={"/applicant/allotment"}>
-        <Button className="m-3" size={"lg"} variant={"danger"}>
-          Go to Allotment Page
-        </Button>
-      </Link>
+      <Button
+        className="m-3"
+        size={"lg"}
+        variant={"danger"}
+        onClick={handleClick}
+      >
+        Go to Allotment Page
+      </Button>
     </div>
   );
 };

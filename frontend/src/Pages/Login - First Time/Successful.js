@@ -6,7 +6,7 @@ const Successful = () => {
   const navigate = useNavigate();
   const [isConfirm, setIsConfirm] = useState(false);
   const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
-  const nextPage = "/applicant/home";
+  const nextPage = "/login";
 
   const handleClick = () => {
     fetch(`/store`, {
