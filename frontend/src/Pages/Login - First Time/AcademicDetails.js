@@ -218,7 +218,7 @@ const AcademicDetails = () => {
               placeholder="Enter your JEE Application Number"
               onChange={(e) => {
                 onlyDigit.test(e.target.value) === true &&
-                e.target.value > 999999999999
+                e.target.value > 99999999999
                   ? setIsError(false)
                   : setIsError(true);
               }}
