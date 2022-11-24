@@ -244,12 +244,13 @@ const AcademicDetails = () => {
         </Row>
         <Row>
           <Form.Text className="text-danger">
-            {isError &&
-              "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023. Roll Nos must be of 7 digits<br/>Application No. should be 12 digits"}
+            {isError && "Error! Percentage Must be between 0 and 100. Year of Passing must be between 2017 and 2023."}
+            <br/>
+            {isError && "Roll Nos must be of 7 digits. Application No. should be 12 digits"}
           </Form.Text>
         </Row>
 
-        <Button size="lg" variant="danger" type="submit">
+        <Button className= "m-3" size="lg" variant="danger" type="submit">
           Submit
         </Button>
       </Form>
