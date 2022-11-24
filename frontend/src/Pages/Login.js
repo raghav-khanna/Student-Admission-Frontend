@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "./styles.css";
 // import SignUp from "./SignUpPage";
 
 const Login = ({ isAdmin = false }) => {
-  const [signedUp, setSignedUp] = useState(false);
-
   const applicant_id = useRef(null);
   const applicant_password = useRef(null);
-
+  const [isError, setIsError] = useState(false);
   let applicantCredentials = { id: "", pass: "" };
-  let isLogin = false;
+  const [authData, setAuthData] = useState();
+  const navigate = useNavigate();
+
+  const oldLogin = "/applicant/home";
+  const newLogin = "/applicant/first_login";
 
   const fetchData = async (obj) => {
     fetch(`/loginData`, {
@@ -24,24 +26,33 @@ const Login = ({ isAdmin = false }) => {
       body: JSON.stringify({ data: obj }),
     })
       .then((res) => {
-        console.log(res);
+        return res.json();
       })
       .then((data) => {
-        isLogin = data.flag;
+        setAuthData(data);
+        console.log(authData);
       });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(signedUp);
     // if (applicant_password === applicant_rePassword) {
     applicantCredentials.id = applicant_id.current.value;
     applicantCredentials.pass = applicant_password.current.value;
     // }
 
     await fetchData(applicantCredentials);
-
-    setSignedUp(true);
+    // console.log(authData);
+    if (authData.flag === false) {
+      setIsError(true);
+    } else {
+      setIsError(false);
+      if (authData.data.length === 0) {
+        navigate(newLogin);
+      } else {
+        navigate(oldLogin);
+      }
+    }
   };
 
   return (
@@ -71,6 +82,9 @@ const Login = ({ isAdmin = false }) => {
                 type="password"
                 placeholder="Password"
               />
+              <Form.Text className="text-danger">
+                {isError && "Error! Wrong Credentials"}
+              </Form.Text>
             </Form.Group>
             <Button className="mb-3" size="lg" variant="danger" type="submit">
               Login
