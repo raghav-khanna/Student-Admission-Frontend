@@ -7,11 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const BannerCards = () => {
   const loginPage = "/login";
+  const ug = "/ug";
+  const msc = "/msc";
+  const mtech = "/mtech";
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(loginPage);
+  const handleClick = (page) => {
+    navigate(page);
   };
 
   return (
@@ -22,12 +25,16 @@ const BannerCards = () => {
         </figure>
       </div>
       <div className="apply-button">
-        <Button onClick={handleClick} variant="danger" size="lg">
+        <Button
+          onClick={() => handleClick(loginPage)}
+          variant="danger"
+          size="lg"
+        >
           Apply Now - 2022
         </Button>
       </div>
       <div className="cards">
-        <div className="card-item">
+        <div className="card-item" onClick={() => handleClick(ug)}>
           <figure>
             <FaGraduationCap />
           </figure>
@@ -40,6 +47,7 @@ const BannerCards = () => {
         <div
           className="card-item"
           style={{ backgroundColor: "rgb(190, 33, 33)" }}
+          onClick={() => handleClick(mtech)}
         >
           <figure>
             <FaGraduationCap />
@@ -49,7 +57,7 @@ const BannerCards = () => {
           <br />
           (M.Tech./MS by Research)
         </div>
-        <div className="card-item">
+        <div className="card-item" onClick={() => handleClick(msc)}>
           <figure>
             <FaGraduationCap />
           </figure>

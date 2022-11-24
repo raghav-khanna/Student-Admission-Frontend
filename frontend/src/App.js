@@ -23,6 +23,7 @@ import SignUp from "./Pages/SignUpPage";
 import AdminLogin from "./Pages/AdminLogin";
 import AdminHome from "./Pages/AdminHome";
 import MTech from "./Pages/MTech";
+import Msc from "./Pages/Msc";
 
 function App() {
   return (
@@ -41,10 +42,11 @@ function App() {
           <Route path="/try_prateek" element={<TryPrateek />} />
           <Route path="/ug" element={<UgAdmissions />} />
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
+          <Route path="/mtech" element={<MTech />} />
+          <Route path="/msc" element={<Msc />} />
           <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/mtech" element={<MTech />} />
         </Route>
 
         {/* After-Login Pages (First Time Login) =>  */}
