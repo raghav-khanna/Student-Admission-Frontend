@@ -24,6 +24,8 @@ const PersonalDetails = () => {
   const pin = useRef(null);
   //
 
+  const pr = location.state.id;
+
   const onlyTextPattern = /^[A-Za-z]+$/;
   const zipCodePattern = /[0-9]{6}/;
   const nextPage = "/applicant/first_login/2";
@@ -61,7 +63,7 @@ const PersonalDetails = () => {
       setProgress(progress + 20);
 
       //Use Ref Hooks
-      a.id = location.state.id; //route.params.state; //need to assign
+      a.id = pr; //route.params.state; //need to assign
       a.first_name = firstName.current.value;
       a.middle_name = middleName.current.value;
       a.last_name = lastName.current.value;

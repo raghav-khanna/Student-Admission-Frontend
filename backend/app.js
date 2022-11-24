@@ -101,6 +101,7 @@ app.post("/signUpData", async(req, res)=>{
 app.post("/loginData", async(req, res) => {
     const decider = {
       flag: false,
+      id: null,
       data: null
     }
     const {id, pass} = req.body.data
@@ -110,7 +111,7 @@ app.post("/loginData", async(req, res) => {
 
     if(rows.length != 0){
       const {password} = rows[0]
-      
+      decider.id = id.slice(5,id.length);
       if(pass === password){
         decider.flag = true
         const results = await pool.query("SELECT id, prefs, status FROM applicants WHERE id = ($1);",[id.slice(5,id.length)])
