@@ -43,7 +43,7 @@ function App() {
           <Route path="/ug_regular_mode" element={<UgRegularMode />} />
           <Route path="/admin_login" element={<AdminLogin />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/mtech" element={<MTech />} />
         </Route>
 

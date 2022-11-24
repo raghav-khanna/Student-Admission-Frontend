@@ -35,7 +35,8 @@ const ProgOffMtech = () => {
                         <div className="programmes-sections-tab-child-list">
                             <ul className="programmes-ul" >
                                 <li className="programmes-list-elements">
-                                    Computer Science and Engineering (CSE)                                </li>
+                                    Computer Science and Engineering (CSE)
+                                </li>
                                 <li className="programmes-list-elements">
                                     Electronics and Communication Engineering (ECE)
                                 </li>
@@ -58,12 +59,14 @@ const ProgOffMtech = () => {
                         <div className="programmes-sections-tab-child-list">
                             <ul className="programmes-ul" >
                                 <li className="programmes-list-elements">
-                                    Computer Science and Engineering (CSE)                                </li>
+                                    Computer Science and Engineering (CSE)
+                                </li>
                                 <li className="programmes-list-elements">
                                     Electronics and Communication Engineering (ECE)
                                 </li>
                                 <li className="programmes-list-elements">
-                                    Communication and Computer Engineering (CCE)                                </li>
+                                    Communication and Computer Engineering (CCE)
+                                </li>
                             </ul>
                             <hr />
                         </div>

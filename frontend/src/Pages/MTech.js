@@ -10,20 +10,24 @@ import finNsup from '../Components/Prateek/MTechLists/FinanceSupp'
 import ins2apply from '../Components/Prateek/MTechLists/InsToApply'
 import elecrit from '../Components/Prateek/Tables/PgTables/EligibilityCriteria'
 import impd from "../Components/Prateek/Tables/PgTables/ImpDates";
+import "../Components/Nirnay/Mtech.css";
+import CommonBanner from '../Components/Nirnay/CommonBanner'
+
 
 const MTech = () => {
     return (
         <div>
+            <CommonBanner />
             <ProgOffMtech />
             <Temp x={"Important Dates"} arr={impd} dataArray={null} color={"white"} />
-            <div>
-                <div>
-                    <h4>Written exam details:</h4>
+            <div className='sub-main'>
+                <div className='sub-container'>
+                    <h4 className='sub-h4'>Written exam details:</h4>
                     <p><strong>Mode:</strong> Online</p>
                     <p><strong>Type of qsns:</strong> MCQ</p>
                     <p><strong>Syllabus:</strong> GATE</p>
                     <p><strong>Duration:</strong> 1 hour (time will be notified by email)</p>
-                    <h4>Note:</h4>
+                    <h4 className='sub-h4'>Note:</h4>
                     <p>The Institute reserves the right to reflect any changes with respect to the admission to a programme, number of rounds of seat allocations, respective deadlines, and also any changes as may be necessary in view of statutory requirements/ notifications from time-to-time.</p>
                 </div>
             </div>
