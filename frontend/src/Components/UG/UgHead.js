@@ -2,7 +2,15 @@ import React from 'react'
 import "./UgHead.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+
 const UgHead = () => {
+    const loginPage = "/login";
+    const navigate = useNavigate();
+
+    const handleClick = (page) => {
+        navigate(page);
+      };
     return (
         <section className="ug-mode">
             <div className="ug-mode-container">
@@ -16,6 +24,7 @@ const UgHead = () => {
                     size="lg"
                     variant="danger"
                     className="btn"
+                    onClick={() => handleClick(loginPage)}
                 >
                     APPLY NOW
                 </Button>
