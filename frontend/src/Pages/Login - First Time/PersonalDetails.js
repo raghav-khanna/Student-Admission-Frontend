@@ -32,29 +32,29 @@ const PersonalDetails = () => {
   const a = new Personaldetails();
   let applicantObjectArray = [];
 
-  const handleError = (e) => {
-    console.log(onlyTextPattern.test(e.target.value));
-    if (
-      onlyTextPattern.test(e.target.value) === true
-      // zipCodePattern.test(e.target.value) === true
-    ) {
-      setIsError(false);
-    } else {
-      setIsError(true);
-    }
-  };
+  // const handleError = (e) => {
+  //   console.log(onlyTextPattern.test(e.target.value));
+  //   if (
+  //     onlyTextPattern.test(e.target.value) === true
+  //     // zipCodePattern.test(e.target.value) === true
+  //   ) {
+  //     setIsError(false);
+  //   } else {
+  //     setIsError(true);
+  //   }
+  // };
 
-  const handleZipError = (e) => {
-    console.log(zipCodePattern.test(e.target.value));
-    if (
-      // onlyTextPattern.test(e.target.value) === true
-      zipCodePattern.test(e.target.value) === true
-    ) {
-      setIsError(false);
-    } else {
-      setIsError(true);
-    }
-  };
+  // const handleZipError = (e) => {
+  //   console.log(zipCodePattern.test(e.target.value));
+  //   if (
+  //     // onlyTextPattern.test(e.target.value) === true
+  //     zipCodePattern.test(e.target.value) === true
+  //   ) {
+  //     setIsError(false);
+  //   } else {
+  //     setIsError(true);
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     // fetch(`/for_store?fname=${firstName.current.value}&mname=${middleName.current.value}`)
@@ -92,7 +92,7 @@ const PersonalDetails = () => {
               size="lg"
               type="text"
               placeholder="Enter Your First Name"
-              onChange={(e) => handleError(e)}
+              // onChange={(e) => handleError(e)}
             />
           </Form.Group>
 
@@ -103,7 +103,7 @@ const PersonalDetails = () => {
               size="lg"
               type="text"
               placeholder="Enter Your Middle Name"
-              onChange={(e) => handleError(e)}
+              // onChange={(e) => handleError(e)}
             />
           </Form.Group>
 
@@ -114,7 +114,7 @@ const PersonalDetails = () => {
               size="lg"
               type="text"
               placeholder="Enter Your Last Name"
-              onChange={(e) => handleError(e)}
+              // onChange={(e) => handleError(e)}
             />
           </Form.Group>
         </Row>
@@ -127,7 +127,7 @@ const PersonalDetails = () => {
               ref={fatherName}
               size="lg"
               placeholder="Please Enter your Father's Full Name"
-              onChange={(e) => handleError(e)}
+              // onChange={(e) => handleError(e)}
             />
           </Form.Group>
         </Row>
@@ -157,13 +157,13 @@ const PersonalDetails = () => {
               ref={pin}
               size="lg"
               placeholder="Please Enter your PINCODE"
-              onChange={(e) => handleZipError(e)}
+              // onChange={(e) => handleZipError(e)}
             />
           </Form.Group>
-          <Form.Text className="text-danger">
+          {/* <Form.Text className="text-danger">
             {isError &&
               "Error! Note - Name must not contain characters other than alphabets and Zip Code must be of 6-digits"}
-          </Form.Text>
+          </Form.Text> */}
         </Row>
         <Button size="lg" variant="danger" type="submit">
           Submit

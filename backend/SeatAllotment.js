@@ -1,3 +1,5 @@
+import { pool } from "./database.js";
+
 const try_alloting = (applicant, branches, current_status, flag) => {
     let branch = branches.find((b)=>{return b.id === applicant.prefs[flag].dsp})
     if(branch.seats){
@@ -52,7 +54,7 @@ export const Round = async (applicants, branches, result) => {
             alloted_branch_id = alloted_branch!=null?alloted_branch.id:'nothing'
         }
 
-        await pool.query(`UPDATE applicants SET status : $(1) WHERE id = $(2);`,
+        await pool.query(`UPDATE applicants SET status = ($1) WHERE id = ($2);`,
         [applicant.status,applicant.id])
         result = [...result, `${applicant.id} has been alloted ${alloted_branch_id}\n`]
         console.log(`${applicant.id} has been alloted ${alloted_branch_id}\n`)
