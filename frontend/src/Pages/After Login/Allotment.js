@@ -76,7 +76,7 @@ const Allotment = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: applicationId, value: val }),
+      body: JSON.stringify({ data: { id: applicationId, value: val } }),
     }).then((res) => {
       console.log(res);
     });
@@ -105,7 +105,7 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={3}
-          disabled={isDisabled}
+          // disabled={isDisabled}
           onClick={handleClick}
         >
           Freeze

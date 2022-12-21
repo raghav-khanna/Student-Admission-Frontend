@@ -27,7 +27,7 @@ const AcademicDetails = () => {
   const rank = useRef(null);
   //
 
-  const onlyDigit = /^[0-9]+$/;
+  const onlyDigit = /^[0-9].?[0-9]+$/;
   const nextPage = "/applicant/first_login/3";
   const d = new Academicdetails();
 
