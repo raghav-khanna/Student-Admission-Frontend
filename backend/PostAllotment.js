@@ -88,24 +88,21 @@ const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
 export const PostAllotment = async(applicant,branches, round_no,total_rounds, choice) => {
     let updated_applicant = await DecideStatus(applicant,branches, round_no, total_rounds, choice)
     let temp = []
-    applicant.prefs.forEach((pref)=>{
+    updated_applicant.prefs.forEach((pref)=>{
         const pair = ('(\''+pref.dsp + '\',' + pref.waiting+')')
-        temp.push(pair)
+        temp = [...temp,pair]
     })
+    let text
+    let values
+    if(!temp.length){
+        text = `UPDATE applicants SET prefs = ($1), status = ($2), on_hold = ($3) WHERE id = ($4);`
+        values = ['{}']
+    }
+    else{
+        text = `UPDATE applicants SET prefs = ARRAY ($1):: pref[], status = ($2), on_hold = ($3) WHERE id = ($4);`
+        values = [temp.toString()]
+    }
+    values = [...values,updated_applicant.status,updated_applicant.on_hold, updated_applicant.id]
+    await pool.query(text, values).then(()=>{console.log("Status and Preference updated")})
 
-    await pool.query(`UPDATE applicants SET prefs : ARRAY $(1):: pref[], status : $(2), on_hold : $(3) WHERE id = $(4);`,
-        [temp.toString(),updated_applicant.status,updated_applicant.on_hold, updated_applicant.id])    
-
-    //INSERT INTO applicants(prefs) VALUES (ARRAY [('CSE', 100), ('CCE', 100), ('ECE', 100)]:: pref[])
-    //INSERT INTO applicants(prefs) VALUES (ARRAY [['CSE', 100], ('CCE', 100), ('ECE', 100)]:: pref[])
-
-    //INSERT INTO applicants(prefs) VALUES (ARRAY $(1):: pref[]) 
-
-    // await branches.map((branch)=> branch.wl_no = 1) Remember to do this
-    
-    /* if(round_no == total_rounds){
-        frozen_applicants.forEach((a)=>{
-            pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
-        })
-    } */
 }

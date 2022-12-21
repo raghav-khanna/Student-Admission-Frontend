@@ -6,6 +6,7 @@ import "./AllotmentStyle.css";
 const Allotment = () => {
   const [alloted, setAlloted] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isDropDisabled, setIsDropDisabled] = useState(false);
   const home = "/";
   const payFees = "/applicant/fees_payment";
   const navigate = useNavigate();
@@ -68,9 +69,11 @@ const Allotment = () => {
   }
 
   const handleClick = (e) => {
+    setIsDropDisabled(true)
+    alert("You have been dropped out of the college! Refund process will start soon")
     const val = e.target.value;
     // console.log(val);
-
+    console.log(`location state:- ${location.state}`)
     fetch(`/roundsEval`, {
       method: "POST",
       headers: {
@@ -83,6 +86,9 @@ const Allotment = () => {
 
     if (val === 3) {
       navigate(payFees);
+    }
+    else if(val === 0){      
+      navigate(home)
     }
   };
 
@@ -128,7 +134,7 @@ const Allotment = () => {
         >
           Float
         </Button>
-        <Button variant="danger" size="lg" value={0} onClick={handleClick}>
+        <Button variant="danger" size="lg" value={0} onClick={handleClick} disabled={isDropDisabled}>
           Drop
         </Button>
       </div>
