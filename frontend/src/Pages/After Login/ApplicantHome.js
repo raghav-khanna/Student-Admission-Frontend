@@ -7,7 +7,7 @@ const ApplicantHome = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.state.data[0].prefs);
+  console.log(location.state.pref_details);
 
   const handleClick = () => {
     navigate(allotement, { state: location.state });
