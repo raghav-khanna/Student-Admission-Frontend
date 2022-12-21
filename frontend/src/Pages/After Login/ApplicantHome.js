@@ -2,15 +2,25 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+///{"(CSE,100)","(CCE,100)","(ECE,100)"}
+
 const ApplicantHome = () => {
   const allotement = "/applicant/allotment";
+  const home = "/";
   const navigate = useNavigate();
   const location = useLocation();
+  const status = location.state.data[0].status;
+  const pref_details = location.state.pref_details;
 
   console.log(location.state.data[0].prefs);
 
   const handleClick = () => {
-    navigate(allotement, { state: location.state });
+    if(status === 0 && pref_details.length === 0){
+      alert("Sorry, but you're already out of the process");
+      navigate(home)
+    }else{
+      navigate(allotement, { state: location.state });
+    }
   };
 
   return (

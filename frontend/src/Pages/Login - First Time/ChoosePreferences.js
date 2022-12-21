@@ -8,7 +8,7 @@ import { Preference } from "../../Classes/Preference";
 
 const ChoosePreferences = () => {
   const [selectedPref, setSelectedPref] = useState([]);
-  const [isError, setIsError] = useState(false);
+  // const [isError, setIsError] = useState(false);
   const [[progress, setProgress], [formData, setFormData]] = useOutletContext();
   let [chosenPref, setChosenPref] = useState([]);
   const navigate = useNavigate();
@@ -20,30 +20,30 @@ const ChoosePreferences = () => {
 
   const prefs = new Preference();
 
-  const checkError = (arr) => {
-    let prefSet = new Set();
-    arr.forEach((val) => {
-      prefSet.add(val);
-    });
-    if (prefSet.size < arr.length) {
-      setIsError(true);
-    }
-  };
+  // const checkError = (arr) => {
+  //   let prefSet = new Set();
+  //   arr.forEach((val) => {
+  //     prefSet.add(val);
+  //   });
+  //   if (prefSet.size < arr.length) {
+  //     setIsError(true);
+  //   }
+  // };
 
   const handleChange = (e) => {
-    checkError([...selectedPref, e.target.value]);
-    if (!isError) {
+    // checkError([...selectedPref, e.target.value]);
+    // if (!isError) {
       setSelectedPref((arr) => [...arr, e.target.value]);
       setChosenPref([...chosenPref, e.target.value]);
-    } else {
-      setIsError(false);
-    }
+    // } else {
+      // setIsError(false);
+    // }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Button Clicked!");
-    if (!isError) {
+    // if (!isError) {
       chosenPref.forEach((val) => {
         // console.log("Current Val -> " + val);
         dspArr.push({ dsp: val, waiting: 10000 });
@@ -55,7 +55,7 @@ const ChoosePreferences = () => {
       setFormData({ ...formData, prefs });
       setProgress(progress + 20);
       navigate(nextPage);
-    }
+    // }
   };
 
   return (
@@ -64,7 +64,7 @@ const ChoosePreferences = () => {
         <h1>Enter Your Academic Details</h1>
         <br />
         <Row className="mb-3">
-          <div className="error">{isError ? error : ""}</div>
+          {/* <div className="error">{isError ? error : ""}</div> */}
           <Form.Group className="mb-5">
             <Form.Label>Preference - 1</Form.Label>
             <Form.Select

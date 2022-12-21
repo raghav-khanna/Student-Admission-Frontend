@@ -25,7 +25,7 @@ const Login = ({ isAdmin = false }) => {
   const newLogin = "/applicant/first_login";
 
   const fetchData = async (obj) => {
-    fetch(`/loginData`, {
+    await fetch(`/loginData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

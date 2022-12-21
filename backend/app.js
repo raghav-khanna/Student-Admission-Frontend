@@ -7,6 +7,7 @@ import { Round } from "./SeatAllotment.js";
 import { retrieveData } from "./data.js";
 import { PostAllotment } from "./PostAllotment.js";
 import { pool } from "./database.js";
+import { brute_force } from "./brute_force.js";
 
 // const PORT = process.env.PORT | 3001;
 const PORT = 3001;
@@ -21,41 +22,6 @@ app.use(express.json());
 //     //app.use(express.static(path.resolve(__dirname, './frontend/build')));
 // }
 
-const brute_force = (id, mains_rank, prefs) => {
-  let text;
-  let values = [id, mains_rank];
-  if (prefs.length >= 1) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[0].dsp];
-  }
-  if (prefs.length >= 2) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[1].dsp];
-  }
-  if (prefs.length >= 3) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[2].dsp];
-  }
-  if (prefs.length >= 4) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[3].dsp];
-  }
-  if (prefs.length >= 5) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000),($7,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[4].dsp];
-  }
-  if (prefs.length >= 6) {
-    text =
-      "INSERT INTO applicants(id, percentile, prefs, status, on_hold) VALUES ( $1, $2, ARRAY [($3,10000),($4,10000),($5,10000),($6,10000),($7,10000),($8,10000)]:: pref[], -1, false)";
-    values = [...values, prefs[5].dsp];
-  }
-  return { text, values };
-};
 
 const process = async () => {
   await pool.query("TRUNCATE students;");
@@ -66,13 +32,11 @@ const process = async () => {
     console.log(`ROUND ${round_no}\n\n`);
     Round(applicants, branches);
   }
-
   /* if(round_no == total_rounds){
     frozen_applicants.forEach((a)=>{
         pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
     })
   } */
-
   //applicants.map((applicant)=> console.log(applicant.id, applicant.prefs))
 };
 
@@ -187,33 +151,35 @@ app.post("/roundsEval", async (req, res) => {
   try {
     await retrieveData(applicants, branches);
     const { id, value } = req.body.data;
-    let applicant = await applicants.find((a) => {
-      return a.id === id;
-    });
-    try{
-      PostAllotment(applicant, branches, round_no, total_rounds, value);
-    }catch (error){
-      console.log(error)
+    let applicant = await applicants.find((a) => { return a.id === id;});
+    if(!applicant.status){
+      console.log("Applicant has already dropped out of the process!")  
+    }
+    else{
+      try {
+        PostAllotment(applicant, branches, round_no, total_rounds, value);
+      } catch (error){console.log(error)}
     }
     
   } catch (error) {console.log(error)}
 });
 
-app.post("/admininstrator", async (req, res) => {
+app.post("/administrator", async (req, res) => {
   //This is not tested at all
+  let result = [];
+  console.log("Order to simulate rounds has been received\n");
   try {
     await retrieveData(applicants, branches);
     branches.map((branch) => (branch.wl_no = 1));
-    let results = [];
-    Round(applicants, branches, results);
-  /* round_no ++;
+    await Round(applicants, branches, result)
+    /* round_no ++;
     if(round_no == total_rounds){
       frozen_applicants.forEach((a)=>{
           pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
       })
     } */
+
   } catch (error) {console.log(error)}
-  res.json(results);
 });
 
 app.get("*", (req, res) => {
