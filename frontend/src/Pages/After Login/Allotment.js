@@ -3,10 +3,11 @@ import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./AllotmentStyle.css";
 
+
 const Allotment = () => {
   const [alloted, setAlloted] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isDropDisabled, setIsDropDisabled] = useState(false);
+  // const [isDropDisabled ,setIsDropDisabled] = useState(false)
   const home = "/";
   const payFees = "/applicant/fees_payment";
   const navigate = useNavigate();
@@ -57,11 +58,20 @@ const Allotment = () => {
     return pref.slice(1, 4);
   };
 
-  if (status === 0) {
-    let branchCurr = getString(pref_details[0].unnest);
-    setBranch(branchMap[branchCurr]);
-    setAlloted(true);
-    setIsDisabled(false);
+  if(status === 0) {
+    console.log(pref_details)
+    // if(pref_details.length === 0){
+    //     alert("here");
+    //     //setIsDropDisabled(true);
+    //     navigate(home);
+    // } 
+    // else{
+      let branchCurr = getString(pref_details[0].unnest);
+      setBranch(branchMap[branchCurr]);
+      setAlloted(true);
+      setIsDisabled(false);
+    // }
+
   } else if (status !== -1) {
     setBranch(branches[status - 1]);
     setAlloted(true);
@@ -69,11 +79,9 @@ const Allotment = () => {
   }
 
   const handleClick = (e) => {
-    setIsDropDisabled(true)
     alert("You have been dropped out of the college! Refund process will start soon")
     const val = e.target.value;
-    // console.log(val);
-    console.log(`location state:- ${location.state}`)
+    // console.log(`location state:- ${location.state}`)
     fetch(`/roundsEval`, {
       method: "POST",
       headers: {
@@ -84,12 +92,9 @@ const Allotment = () => {
       console.log(res);
     });
 
-    if (val === 3) {
-      navigate(payFees);
-    }
-    else if(val === 0){      
-      navigate(home)
-    }
+    if (val == 3) { navigate(payFees); }
+    else if(val == 0){ navigate(home); }
+
   };
 
   return (
@@ -120,7 +125,7 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={2}
-          disabled={isDisabled}
+          // disabled={isDisabled}
           onClick={handleClick}
         >
           Hold
@@ -129,12 +134,12 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={1}
-          disabled={isDisabled}
+          // disabled={isDisabled}
           onClick={handleClick}
         >
           Float
         </Button>
-        <Button variant="danger" size="lg" value={0} onClick={handleClick} disabled={isDropDisabled}>
+        <Button variant="danger" size="lg" value={0} onClick={handleClick}>
           Drop
         </Button>
       </div>
