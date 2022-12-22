@@ -3,19 +3,23 @@ import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./AllotmentStyle.css";
 
-
 const Allotment = () => {
   //Paths
   const home = "/";
   const payFees = "/applicant/fees_payment";
   //Hooks
   const [alloted, setAlloted] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState({
+    freeze: false,
+    hold: false,
+    float: false,
+    drop: false,
+  });
   const [branch, setBranch] = useState("");
   const [waiting, setWaiting] = useState(-1);
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   //Variables
   const applicationId = location.state.id;
   const status = location.state.data[0].status;
@@ -58,47 +62,38 @@ const Allotment = () => {
   };
 
   useEffect(() => {
-    if(status == 0){
+    if (status == 0) {
       //Candidate got the First Pref!
       setAlloted(true);
       let branchCurr = getString(pref_details[0].unnest);
-      setBranch(branchMap[branchCurr])
-      setWaiting(getwait(pref_details[0].unnest))
-    }
-    else if(status == -1){
+      setBranch(branchMap[branchCurr]);
+      setWaiting(getwait(pref_details[0].unnest));
+
+      //Disable Hold and Float Buttons
+
+      setIsDisabled({ ...isDisabled, hold: true, float: true });
+      // console.log(isDisabled);
+    } else if (status == -1) {
       //nothing
-      //Disable Freeze Button
-    }
-    else{
+      //Disable All Buttons Except Drop
+
+      setIsDisabled({
+        ...isDisabled,
+        freeze: true,
+        hold: true,
+        float: true,
+      });
+    } else {
       console.log(pref_details);
       setAlloted(true);
       setBranch(branches[status - 1]);
     }
-  }, [])
-  
-
-  // if(status == 0) {
-  //   console.log(pref_details)
-  //   // if(pref_details.length === 0){
-  //   //     alert("here");
-  //   //     //setIsDropDisabled(true);
-  //   //     navigate(home);
-  //   // } 
-  //   // else{
-  //     // let branchCurr = getString(pref_details[0].unnest);
-  //     // setBranch(branchMap[branchCurr]);
-  //     // setAlloted(true);
-  //     // setIsDisabled(false);
-  //   // }
-
-  // } else if (status != -1) {
-  //   // setBranch(branches[status - 1]);
-  //   // setAlloted(true);
-  //   // setIsDisabled(false);
-  // }
+  }, []);
 
   const handleClick = (e) => {
-    alert("You have been dropped out of the college! Refund process will start soon")
+    alert(
+      "You have been dropped out of the college! Refund process will start soon"
+    );
     const val = e.target.value;
     // console.log(`location state:- ${location.state}`)
     fetch(`/roundsEval`, {
@@ -111,9 +106,11 @@ const Allotment = () => {
       console.log(res);
     });
 
-    if (val == 3) { navigate(payFees); }
-    else if(val == 0){ navigate(home); }
-
+    if (val == 3) {
+      navigate(payFees);
+    } else if (val == 0) {
+      navigate(home);
+    }
   };
 
   return (
@@ -133,7 +130,7 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={3}
-          // disabled={isDisabled}
+          disabled={isDisabled.freeze}
           onClick={handleClick}
         >
           Freeze
@@ -142,7 +139,7 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={2}
-          // disabled={isDisabled}
+          disabled={isDisabled.hold}
           onClick={handleClick}
         >
           Hold
@@ -151,12 +148,18 @@ const Allotment = () => {
           variant="danger"
           size="lg"
           value={1}
-          // disabled={isDisabled}
+          disabled={isDisabled.float}
           onClick={handleClick}
         >
           Float
         </Button>
-        <Button variant="danger" size="lg" value={0} onClick={handleClick}>
+        <Button
+          variant="danger"
+          size="lg"
+          value={0}
+          disabled={isDisabled.drop}
+          onClick={handleClick}
+        >
           Drop
         </Button>
       </div>
