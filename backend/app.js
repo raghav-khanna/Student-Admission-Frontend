@@ -22,7 +22,6 @@ app.use(express.json());
 //     //app.use(express.static(path.resolve(__dirname, './frontend/build')));
 // }
 
-
 const process = async () => {
   await pool.query("TRUNCATE students;");
   await retrieveData(applicants, branches);
@@ -52,14 +51,17 @@ app.get("/load", async (req, res) => {
 app.post("/signUpData", async (req, res) => {
   console.log(req.body.data);
   const { email_id, phone_no, password } = req.body.data;
-  await pool.query("INSERT INTO signup(email_id, phone_no, password) VALUES ($1, $2, $3);",
+  await pool
+    .query(
+      "INSERT INTO signup(email_id, phone_no, password) VALUES ($1, $2, $3);",
       [email_id, phone_no, password]
     )
     .then(() => console.log("Credentials stored"))
     .catch((err) => console.log(err));
 
   let results;
-  await pool.query("SELECT id FROM signup WHERE email_id=($1);", [email_id])
+  await pool
+    .query("SELECT id FROM signup WHERE email_id=($1);", [email_id])
     .then((data) => {
       results = data;
       console.log("ID retrived");
@@ -118,22 +120,65 @@ app.post("/loginData", async (req, res) => {
 
 app.post("/store", async (req, res) => {
   try {
-    const {id,first_name,middle_name,last_name,father_name,address1,address2,zip} = req.body.data.a;
-    const {board_10,percentage_10,yop_10,rollno_10,board_12,percentage_12,yop_12,rollno_12,application_no,mains_rank} = req.body.data.d;
+    const {
+      id,
+      first_name,
+      middle_name,
+      last_name,
+      father_name,
+      address1,
+      address2,
+      zip,
+    } = req.body.data.a;
+    const {
+      board_10,
+      percentage_10,
+      yop_10,
+      rollno_10,
+      board_12,
+      percentage_12,
+      yop_12,
+      rollno_12,
+      application_no,
+      mains_rank,
+    } = req.body.data.d;
     const prefs = req.body.data.prefs.dsp;
 
-    await pool.query(
+    await pool
+      .query(
         `INSERT INTO personaldetails(id, first_name, middle_name, last_name, father_name, address1, address2, zip)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
-        [id,first_name,middle_name,last_name,father_name,address1,address2,zip,]
+        [
+          id,
+          first_name,
+          middle_name,
+          last_name,
+          father_name,
+          address1,
+          address2,
+          zip,
+        ]
       )
       .then(() => console.log("Personal details have been added"));
 
-    await pool.query(
+    await pool
+      .query(
         `INSERT INTO academicdetails
         (id, board_10, percentage_10, yop_10, rollno_10, board_12, percentage_12, yop_12, rollno_12, application_no, mains_rank)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`,
-        [id,board_10,percentage_10,yop_10,rollno_10,board_12,percentage_12,yop_12,rollno_12,application_no,mains_rank,]
+        [
+          id,
+          board_10,
+          percentage_10,
+          yop_10,
+          rollno_10,
+          board_12,
+          percentage_12,
+          yop_12,
+          rollno_12,
+          application_no,
+          mains_rank,
+        ]
       )
       .then(() => console.log("Academic details have been added"));
 
@@ -151,35 +196,43 @@ app.post("/roundsEval", async (req, res) => {
   try {
     await retrieveData(applicants, branches);
     const { id, value } = req.body.data;
-    let applicant = await applicants.find((a) => { return a.id === id;});
-    if(!applicant.status){
-      console.log("Applicant has already dropped out of the process!")  
-    }
-    else{
+    let applicant = await applicants.find((a) => {
+      return a.id === id;
+    });
+    if (!applicant.status) {
+      console.log("Applicant has already dropped out of the process!");
+    } else {
       try {
         PostAllotment(applicant, branches, round_no, total_rounds, value);
-      } catch (error){console.log(error)}
+      } catch (error) {
+        console.log(error);
+      }
     }
-    
-  } catch (error) {console.log(error)}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.post("/administrator", async (req, res) => {
   //This is not tested at all
-  let result = [];
   console.log("Order to simulate rounds has been received\n");
   try {
     await retrieveData(applicants, branches);
-    branches.map((branch) => (branch.wl_no = 1));
-    await Round(applicants, branches, result)
+    branches.map(async (branch) => (branch.wl_no = 1));
+    await Round(applicants, branches).then((result) => {
+      // console.log(`Returned -> ${result}`);
+      res.json(result);
+    });
+    // console.log(`Returned - ${rounds}`);
     /* round_no ++;
     if(round_no == total_rounds){
       frozen_applicants.forEach((a)=>{
           pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
       })
     } */
-
-  } catch (error) {console.log(error)}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get("*", (req, res) => {
