@@ -16,7 +16,7 @@ const Allotment = () => {
     drop: false,
   });
   const [branch, setBranch] = useState("");
-  const [waiting, setWaiting] = useState([]);
+  const [waiting, setWaiting] = useState();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,11 +75,10 @@ const Allotment = () => {
     } else if (status == -1) {
       //nothing
       //Disable All Buttons Except Drop
-      pref_details.forEach(pref => {
+      const {branch, wait} = pref_details.map(pref => {
         const branch = getString(pref.unnest);
         const wait = getwait(pref.unnest);
-        console.log(`${branch} -> ${wait}`)
-        setWaiting([...waiting, `${branch} -> ${wait}`]);
+        return {branch, wait}
         // setWaiting(...waiting, {[branch] : wait});
 
         // console.log(waiting);
@@ -154,10 +153,11 @@ const Allotment = () => {
 
               <div>Waiting List is - <br /> 
               {/* <h1>{waiting}</h1> */}
+              {console.log()}
               <li>
                 {
                   Object.keys(pref_details).map((waitList, key) => {
-                    return (<ul key={key}>{pref_details[key].unnest}</ul>)
+                    return (<ul key={key}>{"Waiting for " + getString(pref_details[waitList].unnest) + " is  " + getwait(pref_details[waitList].unnest)}</ul>)
                   })
                 }
               </li>
