@@ -2,7 +2,6 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-///{"(CSE,100)","(CCE,100)","(ECE,100)"}
 
 const ApplicantHome = () => {
   const allotement = "/applicant/allotment";

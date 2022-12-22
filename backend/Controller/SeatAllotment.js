@@ -1,4 +1,4 @@
-import { pool } from "./database.js";
+import { pool } from "../Model/database.js";
 
 const try_alloting = (applicant, branches, current_status, flag) => {
   let branch = branches.find((b) => {
@@ -44,13 +44,19 @@ const Allot_Seat = (applicant, branches) => {
 
 export const Round = async (applicants, branches) => {
   //Need to sort applicants by percentile before calling this function
-
-  console.log("Inside Round!!");
-  let result = [];
-  const temp2 = await applicants.map((applicant) =>
+  await applicants.map((applicant) =>
     Allot_Seat(applicant, branches)
   );
-  const temp = await applicants.map(async (applicant) => {
+
+  await branches.forEach(async (branch)=>{
+    await pool.query(`UPDATE branches SET seats = ($1), wl_no = ($2) WHERE id = ($3)`, [
+      branch.seats,
+      branch.wl_no,
+      branch.id
+    ]);
+  })
+
+  const result = await applicants.map(async (applicant) => {
     let alloted_branch_id;
     if (!applicant.status) {
       if (!applicant.prefs.length) {
@@ -66,12 +72,17 @@ export const Round = async (applicants, branches) => {
         alloted_branch != null ? alloted_branch.id : "nothing";
     }
 
+
+    //Also add query to change the waiting
     await pool.query(`UPDATE applicants SET status = ($1) WHERE id = ($2);`, [
       applicant.status,
       applicant.id,
     ]);
+
+    
+
     console.log(`${applicant.id} has been alloted ${alloted_branch_id}\n`);
-    return `${applicant.id} has been alloted ${alloted_branch_id}\n`;
+    return `23LNM${applicant.id} has been alloted ${alloted_branch_id}`;
   });
-  return Promise.all(temp);
+  return Promise.all(result);
 };

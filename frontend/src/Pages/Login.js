@@ -37,7 +37,7 @@ const Login = ({ isAdmin = false }) => {
       })
       .then((data) => {
         setAuthData(data);
-        console.log(authData);
+        // console.log(authData);
       });
   };
 

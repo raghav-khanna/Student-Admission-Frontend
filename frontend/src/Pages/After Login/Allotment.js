@@ -1,25 +1,25 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./AllotmentStyle.css";
 
 
 const Allotment = () => {
-  const [alloted, setAlloted] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
-  // const [isDropDisabled ,setIsDropDisabled] = useState(false)
+  //Paths
   const home = "/";
   const payFees = "/applicant/fees_payment";
+  //Hooks
+  const [alloted, setAlloted] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [branch, setBranch] = useState("");
+  const [waiting, setWaiting] = useState(-1);
   const navigate = useNavigate();
   const location = useLocation();
+  
+  //Variables
   const applicationId = location.state.id;
   const status = location.state.data[0].status;
   const pref_details = location.state.pref_details;
-  const [branch, setBranch] = useState(
-    "Electrical and Communication Engineering (ECE) "
-  );
-  const [waiting, setWaiting] = useState({});
-
   const branches = [
     "Computer Science Engineering (CSE)",
     "Computer and Communication Engineering (CCE)",
@@ -28,7 +28,6 @@ const Allotment = () => {
     "Dual Degree Computer Science Engineering (DCS)",
     "Dual Degree Electrical and Communication Engineering (DEC)",
   ];
-
   const branchMap = {
     CSE: "Computer Science Engineering (CSE)",
     CCE: "Computer and Communication Engineering (CCE)",
@@ -58,25 +57,45 @@ const Allotment = () => {
     return pref.slice(1, 4);
   };
 
-  if(status === 0) {
-    console.log(pref_details)
-    // if(pref_details.length === 0){
-    //     alert("here");
-    //     //setIsDropDisabled(true);
-    //     navigate(home);
-    // } 
-    // else{
-      let branchCurr = getString(pref_details[0].unnest);
-      setBranch(branchMap[branchCurr]);
+  useEffect(() => {
+    if(status == 0){
+      //Candidate got the First Pref!
       setAlloted(true);
-      setIsDisabled(false);
-    // }
+      let branchCurr = getString(pref_details[0].unnest);
+      setBranch(branchMap[branchCurr])
+      setWaiting(getwait(pref_details[0].unnest))
+    }
+    else if(status == -1){
+      //nothing
+      //Disable Freeze Button
+    }
+    else{
+      console.log(pref_details);
+      setAlloted(true);
+      setBranch(branches[status - 1]);
+    }
+  }, [])
+  
 
-  } else if (status !== -1) {
-    setBranch(branches[status - 1]);
-    setAlloted(true);
-    setIsDisabled(false);
-  }
+  // if(status == 0) {
+  //   console.log(pref_details)
+  //   // if(pref_details.length === 0){
+  //   //     alert("here");
+  //   //     //setIsDropDisabled(true);
+  //   //     navigate(home);
+  //   // } 
+  //   // else{
+  //     // let branchCurr = getString(pref_details[0].unnest);
+  //     // setBranch(branchMap[branchCurr]);
+  //     // setAlloted(true);
+  //     // setIsDisabled(false);
+  //   // }
+
+  // } else if (status != -1) {
+  //   // setBranch(branches[status - 1]);
+  //   // setAlloted(true);
+  //   // setIsDisabled(false);
+  // }
 
   const handleClick = (e) => {
     alert("You have been dropped out of the college! Refund process will start soon")
@@ -103,12 +122,10 @@ const Allotment = () => {
 
       <div className="allotment-container">
         <div className="allotment-title">
-          {alloted === true
-            ? "Congratulations! You have been alloted the " +
-              <br /> +
-              { branch } +
-              "The Waiting for your next Preference is - " +
-              { waiting }
+          {alloted == true
+            ? `Congratulations! You have been alloted the \n
+              ${branch}
+              The Waiting for your next Preference is - ${waiting}`
             : "You have not been alloted any branch yet"}
         </div>
 
