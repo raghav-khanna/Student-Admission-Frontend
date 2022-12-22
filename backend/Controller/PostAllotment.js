@@ -1,4 +1,4 @@
-import {pool} from './database.js'
+import {pool} from '../Model/database.js'
 
 const Drop = (applicant, branches) => {
     if(applicant.status != -1){
@@ -87,6 +87,15 @@ const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
 
 export const PostAllotment = async(applicant,branches, round_no,total_rounds, choice) => {
     let updated_applicant = await DecideStatus(applicant,branches, round_no, total_rounds, choice)
+
+    await branches.forEach(async (branch)=>{
+        await pool.query(`UPDATE branches SET seats = ($1), wl_no = ($2) WHERE id = ($3)`, [
+          branch.seats,
+          branch.wl_no,
+          branch.id
+        ]);
+      })
+
     let temp = []
     updated_applicant.prefs.forEach((pref)=>{
         const pair = ('(\''+pref.dsp + '\',' + pref.waiting+')')
