@@ -6,8 +6,7 @@ import { brute_force } from "./brute_force.js";
 
 let applicants = [];
 let branches = [];
-let round_no = 1;
-let total_rounds = 2;
+let round_no = 0;
 
 const SignUp = async (req, res) => {
     console.log(req.body.data);
@@ -40,8 +39,7 @@ const Login = async (req, res) => {
     const { id, pass } = req.body.data;
   
     if (id.slice(0, 5) === "23LNM") {
-      const { rows } = await pool
-        .query("SELECT password FROM signup WHERE id=($1);", [
+      const { rows } = await pool.query("SELECT password FROM signup WHERE id=($1);", [
           id.slice(5, id.length),
         ])
         .then((data) => {
@@ -56,7 +54,7 @@ const Login = async (req, res) => {
         if (pass === password) {
           decider.flag = true;
           const results = await pool
-            .query("SELECT status FROM applicants WHERE id = ($1);", [
+            .query("SELECT status, on_hold FROM applicants WHERE id = ($1);", [
               id.slice(5, id.length),
             ])
             .then((data) => {
@@ -140,7 +138,7 @@ const StoreData = async (req, res) => {
         )
         .then(() => console.log("Academic details have been added"));
   
-      const { text, values } = brute_force(id, mains_rank, prefs);
+      const { text, values } = brute_force(id, mains_rank, prefs, -1, false);
       await pool
         .query(text, values)
         .then(() => console.log("Preferences have been added"));
@@ -150,44 +148,44 @@ const StoreData = async (req, res) => {
 }
 
 const EvaluateApplicantOptions = async (req, res) => {
-    //This is tested only for DROP case, other cases are still not tested
     try {
       await retrieveData(applicants, branches);
       const { id, value } = req.body.data;
       let applicant = await applicants.find((a) => {
         return a.id === id;
       });
-      if (!applicant.status) {
-        console.log("Applicant has already dropped out of the process!");
-      } else {
-        try {
-          PostAllotment(applicant, branches, round_no, total_rounds, value);
-        } catch (error) {
-          console.log(error);
-        }
+      try {
+        PostAllotment(applicant, branches, round_no, value);
+      } catch (error) {
+        console.log(error);
       }
+      if(value==3 || value==2){
+        let branch_alloted
+        if(!applicant.status){
+          branch_alloted = branches.find((b) => {return b.id === applicant.prefs[0].dsp})
+        }
+        else{
+          branch_alloted = branches.find((b) => {return b.status == applicant.status})
+        }
+        await pool.query('DELETE FROM students WHERE id = $1;',[applicant.id])
+        await pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',
+        [applicant.id, branch_alloted.status, round_no])
+      }
+
     } catch (error) {
       console.log(error);
     }
 }
 
 const AdministratorFunction = async (req, res) => {
-    //This is not tested at all
     console.log("Order to simulate rounds has been received\n");
     try {
       await retrieveData(applicants, branches);
       branches.map(async (branch) => (branch.wl_no = 1));
       await Round(applicants, branches).then((result) => {
-        // console.log(`Returned -> ${result}`);
         res.json(result);
       });
-      // console.log(`Returned - ${rounds}`);
-      /* round_no ++;
-      if(round_no == total_rounds){
-        frozen_applicants.forEach((a)=>{
-            pool.query('INSERT INTO students(id, branch_status, last_round) VALUES ($1,$2,$3)',[a[0],a[1],a[2]])
-        })
-      } */
+      round_no ++;
     } catch (error) {
       console.log(error);
     }

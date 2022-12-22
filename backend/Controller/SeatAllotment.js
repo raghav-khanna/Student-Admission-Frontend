@@ -1,4 +1,5 @@
 import { pool } from "../Model/database.js";
+import { brute_force } from "./brute_force.js";
 
 const try_alloting = (applicant, branches, current_status, flag) => {
   let branch = branches.find((b) => {
@@ -72,14 +73,11 @@ export const Round = async (applicants, branches) => {
         alloted_branch != null ? alloted_branch.id : "nothing";
     }
 
-
-    //Also add query to change the waiting
-    await pool.query(`UPDATE applicants SET status = ($1) WHERE id = ($2);`, [
-      applicant.status,
-      applicant.id,
-    ]);
-
-    
+    await pool.query("DELETE FROM applicants WHERE id = ($1);", [applicant.id]);
+    const {text, values} = brute_force(applicant.id, applicant.percentile, applicant.prefs, applicant.status, applicant.on_hold)
+    await pool.query(text, values).then(()=>{
+      console.log(`${applicant.id} has been updated\n`)
+    })
 
     console.log(`${applicant.id} has been alloted ${alloted_branch_id}\n`);
     return `23LNM${applicant.id} has been alloted ${alloted_branch_id}`;
