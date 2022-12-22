@@ -1,4 +1,5 @@
 import {pool} from '../Model/database.js'
+import { brute_force } from './brute_force.js'
 
 const Drop = (applicant, branches) => {
     if(applicant.status != -1){
@@ -9,6 +10,7 @@ const Drop = (applicant, branches) => {
         else{
             branch_alloted = branches.find((b) => {return b.status == applicant.status})
         }
+        console.log(branch_alloted)
         branch_alloted.seats++;
     }
     applicant.prefs = []
@@ -19,6 +21,18 @@ const Drop = (applicant, branches) => {
 const Float = (applicant, branches) => {
     let branch_alloted = branches.find((b) => {return b.status == applicant.status})
     branch_alloted.seats++;
+    applicant.status = -1;
+    let updated_prefs = []
+    let flag = true
+    applicant.prefs.map(preference => {
+        if(preference.dsp == branch_alloted.id){
+            flag = false
+        }
+        if(flag){
+            updated_prefs.push(preference)
+        }
+    });
+    applicant.prefs = updated_prefs
     console.log(`${applicant.id} has floated away his seat\n`)
 }
 
@@ -39,7 +53,6 @@ const Hold = (applicant, branches) => {
     console.log(`${applicant.id} is holding his seat\n`)
 }
 
-
 let frozen_applicants = []
 const Freeze = async (applicant, branches,round_no) => {
     let branch_alloted
@@ -57,12 +70,11 @@ const Freeze = async (applicant, branches,round_no) => {
     console.log(`${applicant.id} has frozen his seat\n`)
 }
 
-const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
+const DecideStatus = (applicant, branches, round_no, choice) => {
     
     if(applicant.status == -1){
         //nothing
-        if(round_no == total_rounds){console.log(`${applicant.id} is thrown out of college\n`)}
-        else if(choice==0){Drop(applicant,branches);}
+        if(choice==0){Drop(applicant,branches);}
         else{console.log(`${applicant.id} continues to stay in further rounds\n`)}
     }
     else if(!applicant.status){
@@ -75,7 +87,7 @@ const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
         //nth pref case
         if(choice==0){Drop(applicant,branches)}
         else if(choice==1 && !applicant.on_hold){Float(applicant,branches);}
-        else if(choice==2 && round_no != total_rounds){Hold(applicant,branches);}
+        else if(choice==2){Hold(applicant,branches);}
         else if(choice==3){Freeze(applicant, branches, round_no)}
         else{
             if(!applicant.on_hold){Drop(applicant,branches)}
@@ -85,8 +97,8 @@ const DecideStatus = (applicant, branches, round_no, total_rounds, choice) => {
     return applicant
 }
 
-export const PostAllotment = async(applicant,branches, round_no,total_rounds, choice) => {
-    let updated_applicant = await DecideStatus(applicant,branches, round_no, total_rounds, choice)
+export const PostAllotment = async(applicant, branches, round_no, choice) => {
+    await DecideStatus(applicant, branches, round_no, choice)
 
     await branches.forEach(async (branch)=>{
         await pool.query(`UPDATE branches SET seats = ($1), wl_no = ($2) WHERE id = ($3)`, [
@@ -94,24 +106,9 @@ export const PostAllotment = async(applicant,branches, round_no,total_rounds, ch
           branch.wl_no,
           branch.id
         ]);
-      })
-
-    let temp = []
-    updated_applicant.prefs.forEach((pref)=>{
-        const pair = ('(\''+pref.dsp + '\',' + pref.waiting+')')
-        temp = [...temp,pair]
     })
-    let text
-    let values
-    if(!temp.length){
-        text = `UPDATE applicants SET prefs = ($1), status = ($2), on_hold = ($3) WHERE id = ($4);`
-        values = ['{}']
-    }
-    else{
-        text = `UPDATE applicants SET prefs = ARRAY ($1):: pref[], status = ($2), on_hold = ($3) WHERE id = ($4);`
-        values = [temp.toString()]
-    }
-    values = [...values,updated_applicant.status,updated_applicant.on_hold, updated_applicant.id]
-    await pool.query(text, values).then(()=>{console.log("Status and Preference updated")})
 
+    await pool.query("DELETE FROM applicants WHERE id = ($1);", [applicant.id]);
+    const {text, values} = brute_force(applicant.id, applicant.percentile, applicant.prefs, applicant.status, applicant.on_hold)
+    await pool.query(text, values)
 }

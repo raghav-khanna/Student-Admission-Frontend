@@ -6,7 +6,7 @@ import "./AllotmentStyle.css";
 const Allotment = () => {
   //Paths
   const home = "/";
-  const payFees = "/applicant/fees_payment";
+  const payFees = "/applicant/fee_payment";
   //Hooks
   const [alloted, setAlloted] = useState(false);
   const [isDisabled, setIsDisabled] = useState({
@@ -16,7 +16,7 @@ const Allotment = () => {
     drop: false,
   });
   const [branch, setBranch] = useState("");
-  const [waiting, setWaiting] = useState(-1);
+  const [waiting, setWaiting] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,6 +24,7 @@ const Allotment = () => {
   const applicationId = location.state.id;
   const status = location.state.data[0].status;
   const pref_details = location.state.pref_details;
+  const on_hold = location.state.data[0].on_hold;
   const branches = [
     "Computer Science Engineering (CSE)",
     "Computer and Communication Engineering (CCE)",
@@ -67,8 +68,6 @@ const Allotment = () => {
       setAlloted(true);
       let branchCurr = getString(pref_details[0].unnest);
       setBranch(branchMap[branchCurr]);
-      setWaiting(getwait(pref_details[0].unnest));
-
       //Disable Hold and Float Buttons
 
       setIsDisabled({ ...isDisabled, hold: true, float: true });
@@ -76,6 +75,17 @@ const Allotment = () => {
     } else if (status == -1) {
       //nothing
       //Disable All Buttons Except Drop
+      pref_details.forEach(pref => {
+        const branch = getString(pref.unnest);
+        const wait = getwait(pref.unnest);
+        console.log(`${branch} -> ${wait}`)
+        setWaiting([...waiting, `${branch} -> ${wait}`]);
+        // setWaiting(...waiting, {[branch] : wait});
+
+        // console.log(waiting);
+      });
+
+      // console.log(waiting)
 
       setIsDisabled({
         ...isDisabled,
@@ -85,15 +95,26 @@ const Allotment = () => {
       });
     } else {
       console.log(pref_details);
+      // pref_details.every(pref => {
+      //   let wait = getwait(pref.unnest);
+      //   if(wait == 0){
+      //     return false;
+      //   }else{
+      //     setWaiting(wait);
+      //     return true;
+      //   }
+      // });
       setAlloted(true);
       setBranch(branches[status - 1]);
     }
+
+    if(on_hold == true){
+      setIsDisabled({...isDisabled, float : true});
+    }
+
   }, []);
 
   const handleClick = (e) => {
-    alert(
-      "You have been dropped out of the college! Refund process will start soon"
-    );
     const val = e.target.value;
     // console.log(`location state:- ${location.state}`)
     fetch(`/roundsEval`, {
@@ -105,11 +126,18 @@ const Allotment = () => {
     }).then((res) => {
       console.log(res);
     });
-
+    
     if (val == 3) {
+      alert("You've chosen to freeze the current seat...redirecting to fee payment");
       navigate(payFees);
     } else if (val == 0) {
-      navigate(home);
+      alert(
+        "You have been dropped out of the college! Refund process will start soon"
+        );
+        navigate(home);
+      }else if(val == 2){
+        alert("You've chosen to hold the current seat...redirecting to fee payment");
+        navigate(payFees);
     }
   };
 
@@ -121,9 +149,19 @@ const Allotment = () => {
         <div className="allotment-title">
           {alloted == true
             ? `Congratulations! You have been alloted the \n
-              ${branch}
-              The Waiting for your next Preference is - ${waiting}`
-            : "You have not been alloted any branch yet"}
+              ${branch}`
+            : `You have not been alloted any branch yet`}
+
+              <div>Waiting List is - <br /> 
+              {/* <h1>{waiting}</h1> */}
+              <li>
+                {
+                  Object.keys(pref_details).map((waitList, key) => {
+                    return (<ul key={key}>{pref_details[key].unnest}</ul>)
+                  })
+                }
+              </li>
+              </div>
         </div>
 
         <Button
