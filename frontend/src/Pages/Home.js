@@ -19,7 +19,7 @@ function Home() {
 
   return (
     <>
-      <p style={{ color: "pink" }}>{!data ? "Loading..." : data}</p>
+      {/* <p style={{ color: "pink" }}>{!data ? "Loading..." : data}</p> */}
       <div>
         <GoToTop />
         <BannerCards />

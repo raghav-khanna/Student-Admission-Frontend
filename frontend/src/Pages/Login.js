@@ -25,7 +25,7 @@ const Login = ({ isAdmin = false }) => {
   const newLogin = "/applicant/first_login";
 
   const fetchData = async (obj) => {
-    fetch(`/loginData`, {
+    await fetch(`/loginData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Login = ({ isAdmin = false }) => {
       })
       .then((data) => {
         setAuthData(data);
-        console.log(authData);
+        // console.log(authData);
       });
   };
 
@@ -58,7 +58,13 @@ const Login = ({ isAdmin = false }) => {
         navigate(newLogin, { state: { id: authData.id } });
       } else {
         console.log(authData.data);
-        navigate(oldLogin, { state: { id: authData.id } });
+        navigate(oldLogin, {
+          state: {
+            id: authData.id,
+            data: authData.data,
+            pref_details: authData.pref_details.rows,
+          },
+        });
       }
     }
   };
