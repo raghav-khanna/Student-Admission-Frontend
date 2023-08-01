@@ -1,13 +1,15 @@
 # Student-Admission-Frontend
 
-This repository contains the Front code for the Student-Admission-Module repository
+A complete student admissions module that simulates rounds of allotment based on the choices made by the individual applicants.
 
-## This is here as a practice for the team members (will be removed later)
+Technologies:
+Frontend: React, Bootstrap
 
-**Please Enter your Names and Roll Nos. in the appropriate places (in the same format as Team Member 1)**
+Backend: Node, Express
 
-> Team Member 1 - Raghav Khanna [20UCS153] <br />
-> Team Member 2 - Nirnay Korde [20UCS133] <br />
-> Team Member 3 - Prateek Jain [20UCS145] <br />
+Database: Postgres
 
----
+Deployment: https://student-admissions-lnmiit.up.railway.app
+
+Note:
+Deployment subject to discontinue from Aug 1 2023 due to Railway pulling plug on the free tier.
